@@ -30,6 +30,8 @@ nav > ul > li > a:hover {
 
 .shoparea{
     margin-top: 50px;
+    display: flex;
+    justify-content: center;
 }
 
 .items{

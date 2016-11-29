@@ -7,9 +7,9 @@ var skins = [
     [{skinName:"Yellow", imageLnk:"http://i.imgur.com/Jthev0W.png", sharkLnk:"http://i.imgur.com/N6OI7Uo.png", price: "Use"}],
     [{skinName:"Red", imageLnk:"http://i.imgur.com/144SM1L.png", sharkLnk:"http://i.imgur.com/QeQUcf2.png", price: "Use"}],
     [{skinName:"Green", imageLnk:"http://i.imgur.com/wKWmD2r.png", sharkLnk:"http://i.imgur.com/IHlbXGj.png", price: "Use"}],
-    [{skinName:"Turtle", imageLnk:"http://i.imgur.com/U2EktdE.png", sharkLnk:"http://i.imgur.com/iMlni6J.jpg", price: "50"}],
-    [{skinName:"Tiger", imageLnk:"http://i.imgur.com/Ct2ySac.png", sharkLnk:"http://i.imgur.com/iMlni6J.jpg", price: "200"}],
-    [{skinName:"Cow", imageLnk:"http://i.imgur.com/JxVLmFs.png", sharkLnk:"http://i.imgur.com/iMlni6J.jpg", price: "300"}]
+    [{skinName:"Panda", imageLnk:"http://i.imgur.com/AyKDuc9.jpg?1", sharkLnk:"http://i.imgur.com/SOUYFBA.png?1", price: "50"}],
+    [{skinName:"Tiger", imageLnk:"http://i.imgur.com/Ct2ySac.png", sharkLnk:"http://i.imgur.com/1uQtGVW.png?1", price: "200"}],
+    [{skinName:"Cow", imageLnk:"http://i.imgur.com/JxVLmFs.png", sharkLnk:"http://i.imgur.com/eO1syax.png?1", price: "300"}]
     ];
 
 

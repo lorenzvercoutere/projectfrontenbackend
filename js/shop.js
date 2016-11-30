@@ -9,7 +9,7 @@ var skins = [
     [{skinName:"Green", imageLnk:"http://i.imgur.com/wKWmD2r.png", sharkLnk:"http://i.imgur.com/IHlbXGj.png", price: "Use"}],
     [{skinName:"Cow", imageLnk:"http://i.imgur.com/JxVLmFs.png", sharkLnk:"http://i.imgur.com/cyLK45i.png", price: "50"}],
     [{skinName:"Tiger", imageLnk:"http://i.imgur.com/Ct2ySac.png", sharkLnk:"http://i.imgur.com/YK9DYLu.png", price: "200"}],
-    [{skinName:"Panda", imageLnk:"http://i.imgur.com/JxVLmFs.png", sharkLnk:"http://i.imgur.com/MKJpTNq.png", price: "300"}]
+    [{skinName:"Panda", imageLnk:"http://i.imgur.com/AyKDuc9.jpg?1", sharkLnk:"http://i.imgur.com/SOUYFBA.png?1", price: "50"}]
     ];
 
 

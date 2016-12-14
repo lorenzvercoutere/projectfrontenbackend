@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .menu{
     margin: 20px auto;
 }
@@ -28,3 +29,35 @@ body{
     background-color: #79797a;
 }
 
+=======
+.menu{
+    margin: 20px auto;
+}
+
+.menu ul li{
+    text-transform: uppercase;
+    width: auto;
+    padding: 10px;
+    background-color: #FA6900 ;
+    border-radius: 10px;
+}
+
+.menu ul li a.active{
+    color: #363842;
+}
+
+.menu ul li a:hover{
+    color: #363842;
+}
+
+body{
+    
+    background-image: url("http://i.imgur.com/uLpkRy8.png");
+    background-repeat: space;
+}
+
+.items{
+    background-color: #79797a;
+}
+
+>>>>>>> 41feb7f29632123e3c947c7c8a630ed86cfd52ed

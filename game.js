@@ -53,8 +53,8 @@ function init() {
 	app.get("/", function (req, res) {
 		res.sendFile(path.join(__dirname + "/index.html"));
 	});
-	app.listen(80);
-};
+	app.listen(3000);
+}
 
 
 /**************************************************
@@ -77,7 +77,7 @@ function onSocketConnection(client) {
 
 	// Listen for move player message
 	client.on("move player", onMovePlayer);
-};
+}
 
 // Socket client has disconnected
 function onClientDisconnect() {
@@ -89,14 +89,14 @@ function onClientDisconnect() {
 	if (!removePlayer) {
 		util.log("Player not found: "+this.id);
 		return;
-	};
+	}
 
 	// Remove player from players array
 	players.splice(players.indexOf(removePlayer), 1);
 
 	// Broadcast removed player to connected socket clients
 	this.broadcast.emit("remove player", {id: this.id});
-};
+}
 
 // New player has joined
 function onNewPlayer(data) {
@@ -112,11 +112,11 @@ function onNewPlayer(data) {
 	for (i = 0; i < players.length; i++) {
 		existingPlayer = players[i];
 		this.emit("new player", {id: existingPlayer.id, x: existingPlayer.getX(), y: existingPlayer.getY()});
-	};
+	}
 		
 	// Add new player to the players array
 	players.push(newPlayer);
-};
+}
 
 // Player has moved
 function onMovePlayer(data) {
@@ -127,7 +127,7 @@ function onMovePlayer(data) {
 	if (!movePlayer) {
 		util.log("Player not found: "+this.id);
 		return;
-	};
+	}
 
 	// Update player position
 	movePlayer.setX(data.x);
@@ -135,7 +135,7 @@ function onMovePlayer(data) {
 
 	// Broadcast updated position to connected socket clients
 	this.broadcast.emit("move player", {id: movePlayer.id, x: movePlayer.getX(), y: movePlayer.getY()});
-};
+}
 
 
 /**************************************************
@@ -147,10 +147,10 @@ function playerById(id) {
 	for (i = 0; i < players.length; i++) {
 		if (players[i].id == id)
 			return players[i];
-	};
+	}
 	
 	return false;
-};
+}
 
 
 /**************************************************

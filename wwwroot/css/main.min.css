@@ -1,7 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6em;
-  width: 960px;
   margin: 0 auto;
   background-color: #5b5b5c;
   color: white; }
@@ -36,7 +35,8 @@ nav > ul > li > a:hover {
   padding-top: 50px; }
 
 .content > h3 {
-  font-size: 1.4em;
+  font-size: 2em;
+  text-decoration: underline;
   padding-bottom: 25px;
   padding-top: 25px; }
 

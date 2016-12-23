@@ -27,6 +27,8 @@ function init() {
 	players = [];
 
 	// Set up Socket.IO to listen on port 8000
+
+
 	socket = io.listen(8000);
 
 	// Configure Socket.IO
@@ -35,21 +37,23 @@ function init() {
 		socket.set("transports", ["websocket"]);
 
 		// Restrict log output
-		socket.set("log level", 3);
+		socket.set("log level", 2);
 	});
 
 	// http.listen(80,function () {
 	// 	console.log('listening on port 80..');
 	// });
 
+
+
+	// Start listening for events
+	setEventHandlers();
+
 	app.use(express.static(__dirname + "/wwwroot")); //naar wwwrootmap
 	app.get("/", function (req, res) {
 		res.sendFile(path.join(__dirname + "/index.html"));
 	});
-    app.listen(80);
-
-	// Start listening for events
-	setEventHandlers();
+	app.listen(80);
 };
 
 
@@ -155,3 +159,5 @@ function playerById(id) {
 
 
 init();
+
+

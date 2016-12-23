@@ -19,8 +19,8 @@ function init() {
 	ctx = canvas.getContext("2d");
 
 	// Maximise the canvas
-	canvas.width = window.innerWidth - 200;
-	canvas.height = window.innerHeight - 200;
+	canvas.width = 1280;//window.innerWidth - 200;
+	canvas.height = 700;//window.innerHeight - 200;
 
 	// Initialise keyboard controls
 	keys = new Keys();
@@ -93,8 +93,8 @@ function onKeyup(e) {
 // Browser window resize
 function onResize(e) {
 	// Maximise the canvas
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	canvas.width = 1280;
+	canvas.height = 700;
 };
 
 // Socket connected
@@ -170,8 +170,9 @@ function animate() {
 function update() {
 	// Update local player and check for change
 	if (localPlayer.update(keys)) {
-		// Send local player data to the game server
-		socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
+			// Send local player data to the game server
+			socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
+
 	};
 };
 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<title>A multiplayer game built using HTML5 canvas and WebSockets</title>
+		<meta charset="utf-8">
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/game.css">
+		<link rel="stylesheet" href="css/main.min.css">
+		<link rel="stylesheet" href="css/gerben.css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	</head>
+	
+	<body>
+	<nav class="menu">
+		<ul>
+			<li class="active"><a href="index.html">Play</a></li>
+			<li><a href="shop.html">Shop</a></li>
+			<li><a href="howto.html">How to</a></li>
+			<li><div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div></li>
+		</ul>
+	</nav>
+
+		<canvas id="gameCanvas"></canvas>
+		<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+		<script src="js/requestAnimationFrame.js"></script>
+		<script src="js/Keys.js"></script>
+		<script src="js/Player.js"></script>
+		<script src="js/game.js"></script>
+	<div
+			class="fb-like"
+			data-share="true"
+			data-width="450"
+			data-show-faces="true">
+	</div>
+
+			<div id="fb-root"></div>
+					<script>  window.fbAsyncInit = function() {
+						FB.init({
+							appId      : '222862774830337',
+							xfbml      : true,
+							version    : 'v2.8'
+						});
+					};
+
+					(function(d, s, id){
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id)) {return;}
+						js = d.createElement(s); js.id = id;
+						js.src = "//connect.facebook.net/en_US/sdk.js";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+
+			// Initialise the game
+			init();
+			animate();
+		</script>
+	</body>
+</html>

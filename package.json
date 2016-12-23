@@ -1,0 +1,26 @@
+{
+  "name": "sharkfrenzy",
+  "version": "1.0.0",
+  "description": "Project 3NMCT Front- en Backend",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "gulp-csslint": "^1.0.0",
+    "gulp-sass": "^2.3.2",
+    "socket.io": "^0.9.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://DaftPunk-d@github.com/lorenzvercoutere/projectfrontenbackend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorenzvercoutere/projectfrontenbackend/issues"
+  },
+  "homepage": "https://github.com/lorenzvercoutere/projectfrontenbackend#readme"
+}

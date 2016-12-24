@@ -7,6 +7,12 @@ var canvas,			// Canvas DOM element
 	mouse,
 	localPlayer,	// Local player
 	remotePlayers,	// Remote players
+	score = 0,
+	startTime = Math.round(new Date().getTime() / 1000),
+	audio = document.getElementById('background_audio'),
+	bite_audio = document.getElementById('bite_audio'),
+	mute = document.getElementById('mute'),
+	soundicon = document.getElementById('soundicon'),
 	socket;			// Socket connection
 
 
@@ -20,7 +26,7 @@ function init() {
 
 	// Maximise the canvas
 	canvas.width = 1280;//window.innerWidth - 200;
-	canvas.height = 700;//window.innerHeight - 200;
+	canvas.height = 720;//window.innerHeight - 200;
 
 	// Initialise keyboard controls
 	keys = new Keys();
@@ -35,21 +41,30 @@ function init() {
 	// Initialise the local player
 	localPlayer = new Player(startX, startY);
 
+
 	// Initialise socket connection
 	socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
 
 	// Initialise remote players array
 	remotePlayers = [];
 
+	//timer test
+	score = Math.round(new Date().getTime() / 1000) - startTime;
+
 	// Start listening for events
 	setEventHandlers();
 };
+
+
 
 
 /**************************************************
 ** GAME EVENT HANDLERS
 **************************************************/
 var setEventHandlers = function() {
+
+	mute.addEventListener("click", playMuteAudio);
+
 	// Keyboard
 	window.addEventListener("keydown", onKeydown, false);
 	window.addEventListener("keyup", onKeyup, false);
@@ -74,6 +89,19 @@ var setEventHandlers = function() {
 	socket.on("remove player", onRemovePlayer);
 };
 
+function playMuteAudio() {
+	console.log("mute");
+	if(audio.volume == 0){
+		audio.volume = 1;
+		bite_audio.volume = 1;
+		soundicon.setAttribute("class", "fa fa-volume-up");
+	}else if (audio.volume == 1){
+		audio.volume = 0;
+		bite_audio.volume = 0;
+		soundicon.setAttribute("class", "fa fa-volume-off");
+	}
+}
+
 // Keyboard key down
 function onKeydown(e) {
 	if (localPlayer) {
@@ -94,7 +122,7 @@ function onKeyup(e) {
 function onResize(e) {
 	// Maximise the canvas
 	canvas.width = 1280;
-	canvas.height = 700;
+	canvas.height = 720;
 };
 
 // Socket connected
@@ -103,6 +131,7 @@ function onSocketConnected() {
 
 	// Send local player data to the game server
 	socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY()});
+
 };
 
 // Socket disconnected
@@ -120,6 +149,7 @@ function onNewPlayer(data) {
 
 	// Add new player to the remote players array
 	remotePlayers.push(newPlayer);
+
 };
 
 // Move player
@@ -172,7 +202,11 @@ function update() {
 	if (localPlayer.update(keys)) {
 			// Send local player data to the game server
 			socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
-
+			//timer test
+		console.log(startTime);
+			score = Math.round(new Date().getTime() / 1000) - startTime;
+			// call collision function on a movement
+			checkCollision(localPlayer, remotePlayers);
 	};
 };
 
@@ -183,9 +217,11 @@ function update() {
 function draw() {
 	// Wipe the canvas clean
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+	ctx.font="16px Verdana";
+	ctx.fillText("Score: " + score ,190,20);
 	// Draw the local player
 	localPlayer.draw(ctx);
+
 
 	// Draw the remote players
 	var i;
@@ -193,6 +229,35 @@ function draw() {
 		remotePlayers[i].draw(ctx);
 	};
 };
+
+/******************************************************
+ * CollisionDetection
+ ******************************************************/
+
+function checkCollision(local, remotes){
+	//console.log(local.getX() + " " + local.getY());
+	var localX = local.getX();
+	var localY = local.getY();
+	var sharkWidth = 150;
+	var sharkHeight = 50;
+	var i;
+	for (i = 0; i < remotes.length; i++){
+		if(localX < remotes[i].getX() + sharkWidth &&
+			localX + sharkWidth > remotes[i].getX() &&
+			localY < remotes[i].getY() + sharkHeight &&
+			localY + sharkHeight > remotes[i].getY()){
+			console.log("collision?");
+			score = 0;
+			startTime = Math.round(new Date().getTime() / 1000);
+			bite_audio.play();
+		}else{
+			bite_audio.pause();
+		}
+	}
+
+	//console.log(remotes);
+}
+
 
 
 /**************************************************

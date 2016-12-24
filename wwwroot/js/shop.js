@@ -3,13 +3,13 @@
  */
 
 var skins = [
-    [{skinName:"Grey", imageLnk:"http://i.imgur.com/2q0MyCk.png", sharkLnk:"http://i.imgur.com/5Kfk8Ln.png", price: "Use"}],
-    [{skinName:"Yellow", imageLnk:"http://i.imgur.com/Jthev0W.png", sharkLnk:"http://i.imgur.com/N6OI7Uo.png", price: "Use"}],
-    [{skinName:"Red", imageLnk:"http://i.imgur.com/144SM1L.png", sharkLnk:"http://i.imgur.com/QeQUcf2.png", price: "Use"}],
-    [{skinName:"Green", imageLnk:"http://i.imgur.com/wKWmD2r.png", sharkLnk:"http://i.imgur.com/IHlbXGj.png", price: "Use"}],
-    [{skinName:"Cow", imageLnk:"http://i.imgur.com/JxVLmFs.png", sharkLnk:"http://i.imgur.com/cyLK45i.png", price: "50"}],
-    [{skinName:"Tiger", imageLnk:"http://i.imgur.com/Ct2ySac.png", sharkLnk:"http://i.imgur.com/YK9DYLu.png", price: "200"}],
-    [{skinName:"Panda", imageLnk:"http://i.imgur.com/AyKDuc9.jpg?1", sharkLnk:"http://i.imgur.com/SOUYFBA.png?1", price: "50"}]
+    [{skinName:"Grey", imageLnk:"http://i.imgur.com/2q0MyCk.png", sharkLnk:"http://i.imgur.com/HFLFbV4.gif", price: "Use"}],
+    [{skinName:"Yellow", imageLnk:"http://i.imgur.com/Jthev0W.png", sharkLnk:"http://i.imgur.com/rUM83Ag.gif", price: "Use"}],
+    [{skinName:"Red", imageLnk:"http://i.imgur.com/144SM1L.png", sharkLnk:"http://i.imgur.com/sqd1jeV.gif", price: "Use"}],
+    [{skinName:"Green", imageLnk:"http://i.imgur.com/wKWmD2r.png", sharkLnk:"http://i.imgur.com/GH6p6fU.gif", price: "Use"}],
+    [{skinName:"Cow", imageLnk:"http://i.imgur.com/JxVLmFs.png", sharkLnk:"http://i.imgur.com/XR3IDQC.gif", price: "50"}],
+    [{skinName:"Tiger", imageLnk:"http://i.imgur.com/Ct2ySac.png", sharkLnk:"http://i.imgur.com/Ql8KXrp.gif", price: "200"}],
+    [{skinName:"Panda", imageLnk:"http://i.imgur.com/AyKDuc9.jpg?1", sharkLnk:"http://i.imgur.com/XMrIEVI.gif", price: "50"}]
     ];
 
 

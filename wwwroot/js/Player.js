@@ -26,20 +26,24 @@ var Player = function(startX, startY) {
 
 	// Update player position
 	var update = function(keys) {
+
+
 		// Previous position
 		var prevX = x,
 			prevY = y;
 
+
+
 		// Up key takes priority over down
 		if (keys.up) {
-			if(prevY < 40) {
-				y = 40;
+			if(prevY < -90) {
+				y = -90;
 			}else{
 				y -= moveAmount;
 			}
 		} else if (keys.down) {
-			if(prevY > 695){
-				y = 695;
+			if(prevY > 600){
+				y = 600;
 			}else{
 				y += moveAmount;
 			}
@@ -47,14 +51,14 @@ var Player = function(startX, startY) {
 
 		// Left key takes priority over right
 		if (keys.left) {
-			if(prevX < 0) {
-				x = 0;
+			if(prevX < -20) {
+				x = -20;
 			}else{
 				x -= moveAmount;
 			}
 		} else if (keys.right) {
-			if(prevX > 1280){
-				x = 1280;
+			if(prevX > 1200){
+				x = 1200;
 			}else{
 				x += moveAmount;
 			}
@@ -88,6 +92,9 @@ var Player = function(startX, startY) {
 
 		var img = new Image;
 		img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
+		if(keys.right){
+
+		}
 
 		updateFrame();
 

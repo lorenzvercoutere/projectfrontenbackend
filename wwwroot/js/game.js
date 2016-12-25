@@ -195,6 +195,12 @@ function animate() {
 
 
 /**************************************************
+ ** CAMERA
+ **************************************************/
+
+
+
+/**************************************************
 ** GAME UPDATE
 **************************************************/
 function update() {
@@ -217,6 +223,7 @@ function update() {
 function draw() {
 	// Wipe the canvas clean
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
 	ctx.font="16px Verdana";
 	ctx.fillText("Score: " + score ,190,20);
 	// Draw the local player
@@ -229,6 +236,8 @@ function draw() {
 		remotePlayers[i].draw(ctx);
 	};
 };
+
+
 
 /******************************************************
  * CollisionDetection
@@ -273,3 +282,7 @@ function playerById(id) {
 	
 	return false;
 };
+
+
+
+/****************************************************/

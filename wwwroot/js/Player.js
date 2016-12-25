@@ -5,7 +5,13 @@ var Player = function(startX, startY) {
 	var x = startX,
 		y = startY,
 		id,
-		moveAmount = 2;
+		moveAmount = 2,
+		worldHeight = 1440,
+		worldWidth = 2560,
+		vX = 0,
+		vY = 0,
+		vWidth = 1280,
+		vHeight = 720;
 	
 	// Getters and setters
 	var getX = function() {
@@ -36,32 +42,20 @@ var Player = function(startX, startY) {
 
 		// Up key takes priority over down
 		if (keys.up) {
-			if(prevY < -90) {
-				y = -90;
-			}else{
-				y -= moveAmount;
-			}
+			if(prevY > -90) y -= moveAmount;
+
 		} else if (keys.down) {
-			if(prevY > 600){
-				y = 600;
-			}else{
-				y += moveAmount;
-			}
+			if(prevY < 600)	y += moveAmount;
+
 		};
 
 		// Left key takes priority over right
 		if (keys.left) {
-			if(prevX < -20) {
-				x = -20;
-			}else{
-				x -= moveAmount;
-			}
+			if(prevX > -20) x -= moveAmount;
+
 		} else if (keys.right) {
-			if(prevX > 1200){
-				x = 1200;
-			}else{
-				x += moveAmount;
-			}
+			if(prevX < 1200) x += moveAmount;
+
 		};
 
 
@@ -87,7 +81,16 @@ var Player = function(startX, startY) {
 	// Draw player
 	var draw = function(ctx) {
 		//ctx.fillRect(x-5, y-5, 30, 30);
+		/* CODE FOR VIEWPORT*********
+		vX = x - Math.floor(0.5 * vWidth);
+		if (vX < 0) vX = 0;
+		if (vX+vWidth > worldWidth) vX = worldWidth - vWidth;
 
+
+		vY = y - Math.floor(0.5 * vHeight);
+		if (vY < 0) vY = 0;
+		if (vY+vHeight > worldHeight) vY = worldHeight - vHeight;
+		*/
 
 
 		var img = new Image;

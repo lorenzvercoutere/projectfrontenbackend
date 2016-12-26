@@ -209,7 +209,6 @@ function update() {
 			// Send local player data to the game server
 			socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
 			//timer test
-		console.log(startTime);
 			score = Math.round(new Date().getTime() / 1000) - startTime;
 			// call collision function on a movement
 			checkCollision(localPlayer, remotePlayers);
@@ -252,10 +251,11 @@ function checkCollision(local, remotes){
 	var i;
 	for (i = 0; i < remotes.length; i++){
 		if(localX < remotes[i].getX() + sharkWidth &&
-			localX + sharkWidth > remotes[i].getX() &&
+			localX + sharkWidth - 120 > remotes[i].getX() &&
 			localY < remotes[i].getY() + sharkHeight &&
 			localY + sharkHeight > remotes[i].getY()){
 			console.log("collision?");
+			console.log(playerById(remotes[i].id));
 			score = 0;
 			startTime = Math.round(new Date().getTime() / 1000);
 			bite_audio.play();

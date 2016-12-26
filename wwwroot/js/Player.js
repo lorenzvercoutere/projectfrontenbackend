@@ -42,19 +42,23 @@ var Player = function(startX, startY) {
 
 		// Up key takes priority over down
 		if (keys.up) {
-			if(prevY > -90) y -= moveAmount;
+			if(prevY > -(worldHeight/2)-80) y -= moveAmount;
+			/*y -= moveAmount;*/
 
 		} else if (keys.down) {
-			if(prevY < 600)	y += moveAmount;
+			if(prevY < (worldHeight/2)-125)	y += moveAmount;
+			/*y += moveAmount;*/
 
 		};
 
 		// Left key takes priority over right
 		if (keys.left) {
-			if(prevX > -20) x -= moveAmount;
+			if(prevX > -(worldWidth/2)-25) x -= moveAmount;
+			/*x -= moveAmount;*/
 
 		} else if (keys.right) {
-			if(prevX < 1200) x += moveAmount;
+			if(prevX < (worldWidth/2 - 80)) x += moveAmount;
+			/*x += moveAmount;*/
 
 		};
 
@@ -90,14 +94,11 @@ var Player = function(startX, startY) {
 		vY = y - Math.floor(0.5 * vHeight);
 		if (vY < 0) vY = 0;
 		if (vY+vHeight > worldHeight) vY = worldHeight - vHeight;
-		*/
+*/
 
 
 		var img = new Image;
 		img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
-		if(keys.right){
-
-		}
 
 		updateFrame();
 

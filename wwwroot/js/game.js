@@ -28,6 +28,7 @@ function init() {
 	canvas.width = 1280;//window.innerWidth - 200;
 	canvas.height = 720;//window.innerHeight - 200;
 
+
 	// Initialise keyboard controls
 	keys = new Keys();
 	mouse = new Mouse();
@@ -215,13 +216,25 @@ function update() {
 	};
 };
 
+function clamp(value, min, max){
+	if(value < min) return min;
+	else if(value > max) return max;
+	return value;
+}
 
 /**************************************************
 ** GAME DRAW
 **************************************************/
 function draw() {
 	// Wipe the canvas clean
+	ctx.setTransform(1,0,0,1,0,0);
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	//Clamp the camera position to the world bounds while centering the camera around the player
+	var camX = clamp(-localPlayer.getX() + canvas.width/2, 0, canvas.width*2 - canvas.width);
+	var camY = clamp(-localPlayer.getY() + canvas.height/2, 0, canvas.height*2 - canvas.height);
+
+	ctx.translate( camX, camY );
 
 	ctx.font="16px Verdana";
 	ctx.fillText("Score: " + score ,190,20);

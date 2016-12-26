@@ -6,6 +6,7 @@ canvas {
 	display: block;
 	border:1px black solid;
 	margin:auto;
+    background-image: url(../assets/background/bg.png);
 }
 
 #menuGame{

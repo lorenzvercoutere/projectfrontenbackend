@@ -82,3 +82,54 @@ h3{
 canvas{
     margin-top: 50px;
 }
+
+.div_chat{
+    position: fixed;
+    bottom: 10%;
+    right: 0;
+    float: right;
+    z-index: 3;
+}
+
+.btn_chat{
+    position: relative;
+    transform: rotate(90deg);
+    transform-origin: right top 0;
+    background-color: #FA6900;
+    color: white;
+    padding: 5px 20px 10px 20px;
+    border: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-size: 1em;
+    text-transform: uppercase;
+    transition-duration: 0.4s;
+}
+
+.btn_chat:hover{
+    color: #363842;
+}
+
+.chat_window{
+    position: relative;
+    border: 5px solid #FA6900;
+    border-radius: 10px;
+    background-color: #5b5b5c;
+    padding: 20px;
+    font-size: 0.6em;
+    text-transform: lowercase;
+    font-weight: lighter;
+    width: 250px;
+    height: 500px;
+}
+
+.chat_window #inpClient{
+    float: right;
+    bottom: 0;
+}
+
+.chat_window #messages{
+    height: 200px;
+}
+
+

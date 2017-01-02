@@ -22,4 +22,4 @@ app.listen(port);
 var io = require("socket.io").listen(app);
 console.log("server en sockets luisteren naar poort: " + port);
 
-require("./js/sockets.js")(io);
+require("./wwwroot/js/sockets.js")(io);

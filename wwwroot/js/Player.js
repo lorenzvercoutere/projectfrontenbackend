@@ -81,7 +81,7 @@ var Player = function(startX, startY) {
 
 	var srcX = 0;
 	var srcY = 0;
-
+	var lr;
 	// Draw player
 	var draw = function(ctx) {
 		//ctx.fillRect(x-5, y-5, 30, 30);
@@ -95,10 +95,28 @@ var Player = function(startX, startY) {
 		if (vY < 0) vY = 0;
 		if (vY+vHeight > worldHeight) vY = worldHeight - vHeight;
 */
-
+		if(keys.left){
+			lr = "l"
+		}else if(keys.right){
+			lr = "r";
+		}
 
 		var img = new Image;
-		img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
+		console.log(lr);
+		if(lr == undefined){
+			console.log('dafuq');
+			img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
+		}
+		if(lr == "l"){
+			console.log('l');
+			img.src = 'http://i.imgur.com/BcMNf1R.png';
+		}
+		if(lr == "r"){
+			console.log('r');
+			img.src = 'http://i.imgur.com/zYvAAMe.png';
+		}
+
+
 
 		updateFrame();
 

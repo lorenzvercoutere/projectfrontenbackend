@@ -16,6 +16,7 @@ var canvas,			// Canvas DOM element
 	socket;			// Socket connection
 
 
+
 /**************************************************
 ** GAME INITIALISATION
 **************************************************/

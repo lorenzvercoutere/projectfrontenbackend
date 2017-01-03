@@ -12,6 +12,8 @@ var http = require("http");
 
 
 
+
+
 /**************************************************
 ** GAME VARIABLES
 **************************************************/
@@ -27,7 +29,6 @@ function init() {
 	players = [];
 
 	// Set up Socket.IO to listen on port 8000
-
 
 	socket = io.listen(8000);
 

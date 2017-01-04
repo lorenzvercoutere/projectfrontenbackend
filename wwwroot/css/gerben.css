@@ -186,11 +186,11 @@ h4 {
 
 
 
-/***********        login form              *******************/
+/***********LOGIN FORM*******************/
 
 #modal_trigger{
     background-color: rgba(250, 105, 0, 0);
-    color: whitesmoke;
+    color: white;
     position: absolute;
     top: 20px;
     right: 20px;
@@ -213,22 +213,23 @@ h4 {
 }
 
 /* Modal box or Popup box */
-.popupContainer{
+.popup_container{
     position:absolute;
     width:330px;
     height: auto;
     left:45%;
     top:80px;
-    background: #FFF;
+    background: #ddeefa;
     color: black;
 }
 
 .btn  {
     padding: 10px 20px;
-    background:  #F4F4F2;
+    background:  #FA6900;
+    color: whitesmoke;
 }
 
-.btn_red  {
+.btn_login_username  {
     background:  #FA6900;
     color:  #FFF;
 }
@@ -237,8 +238,11 @@ h4 {
     background:  #E4E4E2;
 }
 
-.btn_red:hover  {
-    background:  #C12B05;
+.btn_login_username:hover  {
+    background:  whitesmoke;
+    border-radius: 5px;
+    border: 2px solid #FA6900;
+    color: #3e3e3e;
 }
 
 a.btn  {
@@ -247,14 +251,21 @@ a.btn  {
     text-decoration:  none;
 }
 
-a.btn_red  {
+a.btn_login_username  {
     color:  #FFF;
 }
 
-.one  {
+.btn_inlog  {
     width: 100%;
     display:  block;
     float: left;
+}
+
+.btn_inlog:hover{
+    width: 98%;
+    background-color: white;
+    border: 2px solid #FA6900;
+    border-radius: 5px;
 }
 
 .one_half  {
@@ -269,28 +280,29 @@ a.btn_red  {
 }
 
 /* Popup Styles*/
-.popupHeader  {
+.popup_header  {
     font-size: 16px;
     text-transform:  uppercase;
     color: black;
+    background-color: #ddeefa;
 }
 
-.popupHeader  {
-    background: #F4F4F2;
+.popup_header  {
+    background: #ddeefa;
     position: relative;
     padding: 10px 20px;
     border-bottom: 1px solid #DDD;
     font-weight: bold;
 }
 
-.popupHeader .modal_close  {
+.popup_header .modal_close  {
     position:  absolute;
     right:  0;
     top: 0;
     padding: 10px 15px;
-    background: #E4E4E2;
+    background: #ddeefa;
     cursor:  pointer;
-    color: black;
+    color: #FA6900;
     font-size: 16px;
 }
 
@@ -305,8 +317,9 @@ a.btn_red  {
     clear: both;
     padding: 10px;
     margin-bottom:  10px;
-    background:  #F4F4F2;
+    background:  #3B5998;
     overflow:  hidden;
+    color: white;
 }
 
 .social_login .icon  {
@@ -324,30 +337,25 @@ a.btn_red  {
     background: #3B5998;
 }
 
-.social_login .google .icon  {
-    background: #DD4B39;
-}
-
 .social_login .icon_title  {
     display: block;
     padding: 5px 0;
     float: left;
     font-weight:  bold;
     font-size:  16px;
-    color: #777;
+    color: white;
 }
 
-.social_login .social_box:hover  {
-    background:  #E4E4E2;
+.social_login .social_box:hover{
+    border: 2px solid #FA6900;
 }
 
 
-.centeredText  {
+.center_text  {
     text-align:  center;
     margin:  20px 0;
     clear:  both;
     overflow:  hidden;
-    text-transform:  uppercase;
 }
 
 
@@ -359,7 +367,7 @@ a.btn_red  {
 .action_btns a  {
     display:  block;
 }
-/* User Login Form */
+
 .user_login  {
     display:  none;
 }
@@ -369,68 +377,10 @@ a.btn_red  {
     margin-bottom: 5px;
 }
 
-.user_login input[type="text"],  .user_login input[type="email"],  .user_login input[type="password"]  {
+.user_login input[type="text"]{
     display:  block;
     width: 90%;
     padding:  10px;
     border: 1px solid #DDD;
     color: #666;
-}
-
-.user_login input[type="checkbox"]  {
-    float: left;
-    margin-right: 5px;
-}
-
-.user_login input[type="checkbox"]+label  {
-    float: left;
-}
-
-
-.user_login .checkbox  {
-    margin-bottom:  10px;
-    clear:  both;
-    overflow:  hidden;
-}
-
-.forgot_password  {
-    display: block;
-    margin:  20px 0 10px;
-    clear:  both;
-    overflow:  hidden;
-    text-decoration:  none;
-    color: #ED6347;
-}
-/* User Register Form */
-.user_register  {
-    display:  none;
-}
-
-.user_register label  {
-    display:  block;
-    margin-bottom: 5px;
-}
-
-.user_register input[type="text"],  .user_register input[type="email"],  .user_register input[type="password"]  {
-    display:  block;
-    width: 90%;
-    padding:  10px;
-    border: 1px solid #DDD;
-    color: #666;
-}
-
-.user_register input[type="checkbox"]  {
-    float: left;
-    margin-right: 5px;
-}
-
-.user_register input[type="checkbox"]+label  {
-    float: left;
-}
-
-
-.user_register .checkbox  {
-    margin-bottom:  10px;
-    clear:  both;
-    overflow:  hidden;
 }

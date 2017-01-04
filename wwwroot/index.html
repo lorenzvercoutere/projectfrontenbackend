@@ -37,7 +37,7 @@
 			<span class="modal_close"><i class="fa fa-times"></i></span>
 		</header>
 
-		<section class="popupBody">
+		<section class="popup_body">
 			<!-- Social Login -->
 			<div class="social_login">
 				<div class="">
@@ -56,7 +56,7 @@
 				</div>
 			</div>
 
-			<!-- Username & Password Login form -->
+			<!-- Username Login -->
 			<div class="user_login">
 				<form>
 					<label>Username</label>
@@ -75,22 +75,14 @@
         $("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
 
         $(function(){
-            // Calling Login Form
+            // login aanroepen
             $("#login_form").click(function(){
                 $(".social_login").hide();
                 $(".user_login").show();
                 return false;
             });
 
-            // Calling Register Form
-            $("#register_form").click(function(){
-                $(".social_login").hide();
-                $(".user_register").show();
-                $(".header_title").text('Register');
-                return false;
-            });
-
-            // Going back to Social Forms
+            // trg na social forms
             $(".back_btn").click(function(){
                 $(".user_login").hide();
                 $(".user_register").hide();

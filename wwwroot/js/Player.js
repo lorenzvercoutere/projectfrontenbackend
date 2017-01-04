@@ -102,18 +102,18 @@ var Player = function(startX, startY) {
 		}
 
 		var img = new Image;
-		console.log(lr);
+		//console.log(lr);
 		if(lr == undefined){
-			console.log('dafuq');
-			img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
+			//console.log('dafuq');
+			//img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
 		}
 		if(lr == "l"){
-			console.log('l');
-			img.src = 'http://i.imgur.com/BcMNf1R.png';
+			//console.log('l');
+			//img.src = 'http://i.imgur.com/BcMNf1R.png';
 		}
 		if(lr == "r"){
-			console.log('r');
-			img.src = 'http://i.imgur.com/zYvAAMe.png';
+			//console.log('r');
+			//img.src = 'http://i.imgur.com/zYvAAMe.png';
 		}
 
 

@@ -1,47 +1,93 @@
 $padding25 : 25px;
 $padding10 : 10px;
-$marginmiddle : 0 auto;
 $defaultwidth: 960px;
 $padding50 : 50px;
 $defaultfontsize : 1.6em;
 $h3fontsize : 1.4em;
 $marginleft30 : 30px;
 $marginleft20 : 20px;
+$marginmiddle: 20px auto;
+
+//colors
+$black: #000;
+$white: #ffffff;
+$dark_grey: #5b5b5c;
+$light_grey: #79797a;
+$light_yellow: #deb887;
+$dark_yellow: #b8860b;
+$yellow: #d29e0b;
+$orange: #fa6900;
+$dark_blue_grey: #363842;
+$bg_blue: #ddeefa;
+$lighter_grey: #808080;
+$fb_blue: #3b5998;
+
+//fonts
+$font_0: 'Montserrat';
+$font_1: 'sans-serif';
+$font_2: 'Montserrat';
+$font_3: 'sans-serif';
+
+//urls
+$url_bg: url('../wwwroot/assets/background/bg.png');
+$url_0: url('http://i.imgur.com/uLpkRy8.png');
 
 
 body{
-  font-family: 'Montserrat', sans-serif;
+  font-family: $font_0, $font_1;
   font-size: $defaultfontsize;
   width: $defaultwidth;
   margin: 0 auto;
-  background-color: #5b5b5c;
-  color: white;
+  color: $white;
+  overflow: hidden;
+  background-image: $url_0;
+  background-repeat: space;
+}
+
+canvas{
+  display: block;
+  border: 1px $black solid;
+  margin: auto;
+  background-image: $url_bg;
+
 }
 
 .menu{
   display: block;
   width: 350px;
   margin: $marginmiddle;
+  ul li {
+    text-transform: uppercase;
+    width: auto;
+    padding: 10px;
+    background-color: $orange;
+    border-radius: 10px;
+    a {
+      &.active {
+        color: $dark_blue_grey;
+      }
+      &:hover {
+        color: $dark_blue_grey;
+      }
+    }
+  }
 }
 
-nav > ul > li{
+nav > ul > li {
   padding-top: 25px;
   display: inline-block;
   width: 100px;
+  > a {
+    text-decoration: none;
+    color: $white;
+    &:hover {
+      color: $dark_blue_grey;
+    }
+  }
 }
-
-nav > ul > li > a{
-  text-decoration: none;
-  color: white;
-}
-
-nav > ul > li > a:hover {
-  color: #3e3e3e;
-}
-
 
 .active a{
-  color: black;
+  color: $black;
   width: 100%;
   margin: $marginmiddle;
 }
@@ -51,7 +97,25 @@ nav > ul > li > a:hover {
   height: 100%;
   display: block;
   margin: $marginmiddle;
-  padding-top: $padding50;
+  color: $white;
+  border-radius: 20px;
+  padding: 25px;
+  overflow-y: scroll;
+  max-height: 650px;
+  img {
+    padding: 20px;
+    height: 100px;
+  }
+  ul li {
+    margin-left: 50px;
+    list-style: disc;
+  }
+}
+.h3_content {
+  padding-bottom: 20px;
+}
+h3 {
+  text-transform: uppercase;
 }
 
 .content > h3{
@@ -68,5 +132,310 @@ nav > ul > li > a:hover {
   margin-left: $marginleft20;
   padding-bottom: $padding10;
 }
+
+.shoparea {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.items {
+  padding: 25px;
+  width: 960px;
+  height: 650px;
+  display: flex;
+  overflow-y: scroll;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: $bg_blue;
+  border-radius: 20px;
+}
+
+.item {
+  display: block;
+  margin: 30px;
+  width: 200px;
+  height: 300px;
+  background-color: $light_yellow;
+  border-radius: 5px;
+  > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  > h2 {
+    text-transform: uppercase;
+    font-size: 0.825em;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: $orange;
+}
+
+.active a {
+  color: $black;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.moneyAImg > span {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  > button {
+    background-color: $dark_yellow;
+    border: none;
+    border-radius: 7px;
+    padding: 5px;
+    color: $white;
+    font-size: 0.825em;
+    font-family: $font_2, $font_3;
+    &:hover {
+      background-color: $yellow;
+    }
+    > img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.div_chat {
+  position: fixed;
+  bottom: 10%;
+  right: 0;
+  float: right;
+  z-index: 3;
+}
+.btn_chat {
+  position: relative;
+  transform: rotate(90deg);
+  transform-origin: right top 0;
+  background-color: $orange;
+  color: $white;
+  padding: 5px 20px 10px;
+  border: none;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-size: 1em;
+  text-transform: uppercase;
+  transition-duration: 0.4s;
+  &:hover {
+    color: $dark_blue_grey;
+  }
+}
+.chat_window {
+  position: relative;
+  border: 5px solid $orange;
+  border-radius: 10px;
+  background-color: $light_yellow;
+  padding: 20px;
+  font-size: 0.6em;
+  text-transform: lowercase;
+  font-weight: lighter;
+  width: 250px;
+  height: 500px;
+  #inpClient {
+    float: right;
+    bottom: 0;
+  }
+  #messages {
+    height: 200px;
+  }
+}
+#HowTo_Content {
+  background-color: $bg_blue;
+  color: $dark_blue_grey;
+  font-size: 1em;
+}
+h4 {
+  color: $orange;
+  font-size: 1.4em;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
+}
+#arrowkeys {
+  height: 150px;
+}
+
+#modal_trigger {
+  color: $white;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  float: right;
+  padding: 10px 20px;
+  background-color: $orange;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+#lean_overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: $black;
+  display: none;
+}
+.popup_container {
+  position: absolute;
+  width: 330px;
+  height: auto;
+  left: 45%;
+  top: 80px;
+  background: $bg_blue;
+  color: $black;
+}
+.btn {
+  padding: 10px 20px;
+  background: $orange;
+  color: $white;
+  &:hover {
+    background: $white;
+  }
+}
+.btn_login_username {
+  background: $orange;
+  color: $white;
+  &:hover {
+    background: $white;
+    border-radius: 5px;
+    border: 2px solid $orange;
+    color: $dark_grey;
+  }
+}
+a {
+  &.btn {
+    color: $dark_grey;
+    text-align: center;
+    text-decoration: none;
+  }
+  &.btn_login_username {
+    color: $white;
+  }
+}
+.btn_inlog {
+  width: 100%;
+  display: block;
+  float: left;
+  &:hover {
+    width: 98%;
+    background-color: $light_grey;
+    border: 2px solid $orange;
+    border-radius: 5px;
+  }
+}
+.one_half {
+  width: 50%;
+  display: block;
+  float: left;
+  &.last {
+    width: 45%;
+    margin-left: 5%;
+  }
+}
+.popup_header {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: $black;
+  background-color: $bg_blue;
+  position: relative;
+  padding: 10px 20px;
+  border-bottom: 1px solid $lighter_grey;
+  font-weight: bold;
+  .modal_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 15px;
+    background: $bg_blue;
+    cursor: pointer;
+    color: $orange;
+    font-size: 16px;
+  }
+}
+.popup_body {
+  padding: 20px;
+}
+.social_login {
+  .social_box {
+    display: block;
+    clear: both;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: $fb_blue;
+    overflow: hidden;
+    color: $white;
+    &:hover {
+      border: 2px solid $orange;
+    }
+  }
+  .icon {
+    display: block;
+    width: 10px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    float: left;
+    color: $white;
+    font-size: 16px;
+    text-align: center;
+  }
+  .icon_title {
+    display: block;
+    padding: 5px 0;
+    float: left;
+    font-weight: bold;
+    font-size: 16px;
+    color: $white;
+  }
+  .fb .icon {
+    background: $fb_blue;
+  }
+}
+.center_text {
+  text-align: center;
+  margin: 20px 0;
+  clear: both;
+  overflow: hidden;
+}
+.action_btns {
+  clear: both;
+  overflow: hidden;
+  a {
+    display: block;
+  }
+}
+.user_login {
+  display: none;
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"] {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    border: 1px solid $white;
+    color: $light_grey;
+  }
+}
+
+
+
+
 
 

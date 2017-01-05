@@ -37,6 +37,4 @@ function login() {
     //var gebruikers = new Array();
 
     console.log("collectie: " + collection);
-
-
 }

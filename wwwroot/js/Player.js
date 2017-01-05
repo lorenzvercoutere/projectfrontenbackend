@@ -105,15 +105,15 @@ var Player = function(startX, startY) {
 		//console.log(lr);
 		if(lr == undefined){
 			//console.log('dafuq');
-			//img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
+			img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
 		}
 		if(lr == "l"){
 			//console.log('l');
-			//img.src = 'http://i.imgur.com/BcMNf1R.png';
+			img.src = 'http://i.imgur.com/BcMNf1R.png';
 		}
 		if(lr == "r"){
 			//console.log('r');
-			//img.src = 'http://i.imgur.com/zYvAAMe.png';
+			img.src = 'http://i.imgur.com/zYvAAMe.png';
 		}
 
 

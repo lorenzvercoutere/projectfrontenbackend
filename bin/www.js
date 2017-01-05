@@ -4,12 +4,22 @@
 
 
 var config = require('../config');
+var app = require('../app');
 
+var http = require('http');
+var server = http.createServer(app);
 
+app.set('port', process.env.PORT || 3000);
 
 var DBService = require('../data/connectDBService');
 var connectDB = DBService (config.MONGODBURL, require('mongoose'));
-var User = require('../data/models/user');
+
+
+server.listen(app.get('port'), function () {
+    console.log('Express server listening on port ' +server.address().address + ":" + app.get('port'));
+});
+
+/**var User = require('../data/models/user');
 
 var mongoDB = require('mongodb');
 var mongoClient = mongoDB.MongoClient;
@@ -50,4 +60,4 @@ function init() {
     });
 }
 
-init();
+init();**/

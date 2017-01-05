@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    <h1>Hallo op de JADE-pagina</h1>
+    form(method="GET", action="/users/details")
+        p
+            label(for="username") Username<br />
+            input#username(name="username")
+        p
+            input(type="submit", value="Search")

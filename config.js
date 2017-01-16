@@ -17,6 +17,8 @@ function getEnv(variable) {
         if (variable == 'PORT') { return 1337 }
 
         console.log('You must create an environment variable for ' + variable);
+
+        //return null;
     }
 
     return process.env[variable]; //of bvb. process.env.WEB_PORT

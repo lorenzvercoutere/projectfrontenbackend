@@ -28,6 +28,14 @@ router.get('/', function (req, res) {
 
 });
 
+router.get('/shop', function (req, res) {
+    res.render('shop');
+});
+
+router.get('/howto', function (req, res) {
+    res.render('howto');
+});
+
 router.get('/details?:username', function (req, res) {
     //console.log("details laden : "  + req.query.username);
 

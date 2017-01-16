@@ -169,7 +169,7 @@
             };
 
             socket.on("login", function (data) {
-                var username = window.prompt("Chose a username", "User");
+                var username = window.prompt("Choose a username", "User");
                 socket.emit("login", username);
             });
 

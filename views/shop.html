@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SharkFrenzy's Shop</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/main.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+    <!--<link rel="stylesheet" href="wwwroot/css/main.min.css">-->
+</head>
+<body>
+
+<!--<button name="btn" id="btn">
+    <span>Click here</span>
+</button>-->
+
+<nav class="menu">
+    <ul>
+        <li><a href="/users/">Play</a></li>
+        <li class="active">Shop</li>
+        <li><a href="/users/howto">How to</a></li>
+    </ul>
+</nav>
+
+<div  class="shoparea">
+
+
+
+<section class="items">
+
+</section>
+
+<aside class="categorien">
+
+</aside>
+
+</div>
+<section id="chatsectie">
+    <div class="div_chat">
+        <button class="btn_chat" onclick="toggle_div_chat ('chatsection');">Chat</button>
+        <section style="display: none" class="chat_window" id="chatsection">
+            <div id="messages">
+
+            </div>
+            <input id="inpClient" type="text"/>
+        </section>
+    </div>
+</section>
+<script src="/js/shop.js"></script>
+
+</body>
+</html>

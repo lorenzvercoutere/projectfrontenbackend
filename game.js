@@ -63,7 +63,7 @@ function init() {
 **************************************************/
 var setEventHandlers = function() {
 	// Socket.IO
-	socket.sockets.on("connection", onSocketConnection);
+	socket.emit("connection", onSocketConnection);
 };
 
 // New socket connection

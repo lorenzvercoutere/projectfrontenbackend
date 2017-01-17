@@ -45,7 +45,7 @@ function init() {
 
 
 	// Initialise socket connection
-	socket = io.connect("http://localhost", {port: 8000, transports: ["websocket"]});
+	socket = io.connect("http://localhost", {port: 3000, transports: ["websocket"]});
 
 	// Initialise remote players array
 	remotePlayers = [];
@@ -55,7 +55,7 @@ function init() {
 
 	// Start listening for events
 	setEventHandlers();
-};
+}
 
 
 
@@ -108,15 +108,15 @@ function playMuteAudio() {
 function onKeydown(e) {
 	if (localPlayer) {
 		keys.onKeyDown(e);
-	};
-};
+	}
+}
 
 // Keyboard key up
 function onKeyup(e) {
 	if (localPlayer) {
 		keys.onKeyUp(e);
-	};
-};
+	}
+}
 
 
 
@@ -125,7 +125,7 @@ function onResize(e) {
 	// Maximise the canvas
 	canvas.width = 1280;
 	canvas.height = 720;
-};
+}
 
 // Socket connected
 function onSocketConnected() {
@@ -134,12 +134,12 @@ function onSocketConnected() {
 	// Send local player data to the game server
 	socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY()});
 
-};
+}
 
 // Socket disconnected
 function onSocketDisconnect() {
 	console.log("Disconnected from socket server");
-};
+}
 
 // New player
 function onNewPlayer(data) {
@@ -152,7 +152,7 @@ function onNewPlayer(data) {
 	// Add new player to the remote players array
 	remotePlayers.push(newPlayer);
 
-};
+}
 
 // Move player
 function onMovePlayer(data) {
@@ -162,12 +162,12 @@ function onMovePlayer(data) {
 	if (!movePlayer) {
 		console.log("Player not found: "+data.id);
 		return;
-	};
+	}
 
 	// Update player position
 	movePlayer.setX(data.x);
 	movePlayer.setY(data.y);
-};
+}
 
 // Remove player
 function onRemovePlayer(data) {
@@ -177,11 +177,11 @@ function onRemovePlayer(data) {
 	if (!removePlayer) {
 		console.log("Player not found: "+data.id);
 		return;
-	};
+	}
 
 	// Remove player from array
 	remotePlayers.splice(remotePlayers.indexOf(removePlayer), 1);
-};
+}
 
 
 /**************************************************
@@ -214,8 +214,8 @@ function update() {
 			score = Math.round(new Date().getTime() / 1000) - startTime;
 			// call collision function on a movement
 			checkCollision(localPlayer, remotePlayers);
-	};
-};
+	}
+}
 
 function clamp(value, min, max){
 	if(value < min) return min;
@@ -247,8 +247,8 @@ function draw() {
 	var i;
 	for (i = 0; i < remotePlayers.length; i++) {
 		remotePlayers[i].draw(ctx);
-	};
-};
+	}
+}
 
 
 
@@ -292,10 +292,10 @@ function playerById(id) {
 	for (i = 0; i < remotePlayers.length; i++) {
 		if (remotePlayers[i].id == id)
 			return remotePlayers[i];
-	};
+	}
 	
 	return false;
-};
+}
 
 
 

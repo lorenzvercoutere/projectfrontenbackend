@@ -20,7 +20,6 @@ module.exports = function (io) {
         });
 
         socket.on("clientMsg", function (data) {
-
             socket.emit("serverMsg", JSON.stringify({content: data}));
             socket.broadcast.emit("serverMsg", JSON.stringify({content: data}));
         });

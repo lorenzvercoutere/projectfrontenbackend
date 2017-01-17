@@ -1,7 +1,7 @@
 /**************************************************
 ** GAME KEYBOARD CLASS
 **************************************************/
-var Keys = function(up, left, right, down) {
+var KeysGame = function(up, left, right, down) {
 	var up = up || false,
 		left = left || false,
 		right = right || false,
@@ -80,7 +80,7 @@ var Keys = function(up, left, right, down) {
 	};
 };
 
-var Mouse = function (mousePosX, mousePosY) {
+var MouseGame = function (mousePosX, mousePosY) {
 	var mousePosX,
 		mousePosY;
 	var mouseover = function (e) {

@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/stylesheets/reset.css"/>
     <link rel="stylesheet" href="/stylesheets/main.min.css"/>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+    <script src="/js/sharkFrenzyGame.js"></script>
 </head>
 <body>
 <nav class="menu">
@@ -17,18 +19,14 @@
     <!--<a id="modal_trigger" href="#modal" class="btn">Login</a>-->
 </nav>
 
-<!--<audio id="background_audio" autoplay="autoplay" loop>
+<audio id="background_audio" autoplay="autoplay" loop>
     <source src="/assets/sounds/sea.mp3" />
 </audio>
 <audio id="bite_audio">
     <source src="/assets/sounds/bite.wav" />
 </audio>
 <div id="mute"><i id="soundicon" class="fa fa-volume-up"></i></div>
-<canvas id="gameCanvas"></canvas>-->
-<script>
-    init();
-    animate();
-</script>
+<canvas id="gameCanvas"></canvas>
 <section id="chatsectie">
     <div class="div_chat">
         <button class="btn_chat" onclick="toggle_div_chat ('chatsection');">Chat</button>
@@ -38,10 +36,10 @@
             </div>
             <input id="inpClient" type="text"/>
         </section>
-        <script src="/js/chat.js">
-            toggle_div_chat();
-        </script>
     </div>
 </section>
+<script>
+    initGame();
+</script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sharkfrenzy.io - How To Play</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/main.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+</head>
+<body>
+
+
+    <nav class="menu">
+        <ul>
+            <li><a href="/users/">Play</a></li>
+            <li><a href="/users/shop">Shop</a></li>
+            <li class="active">How to</li>
+        </ul>
+    </nav>
+
+    <div id="HowTo_Content" class="content">
+        <h4 class="background double">How to Play</h4>
+        <div class="h3_content">
+            <ul>
+                <li>Use arrow keys or ASWD for movement</li>
+                <img id="arrowkeys" src="/assets/controls/movement.png" alt="movement">
+                <li>Use Space to attack other players</li>
+                <img src="/assets/controls/spacebar.png" alt="attack">
+                <li>Use RETURN to respawn</li>
+                <img src="/assets/controls/backspace.png" alt="respawn">
+            </ul>
+        </div>
+
+
+        <h4>Goal</h4>
+        <div class="h3_content">
+            <p>The goal of this game is to kill the sharks/hf the opposite teams with your team</p>
+            <p>When you eat a shark, your shark grows bigger</p>
+            <p>Small sharks can work together to eat bigger sharks</p>
+            <p>Small sharks are faster then big sharks</p>
+        </div>
+
+    </div>
+
+
+    <section id="chatsectie">
+        <div class="div_chat">
+            <button class="btn_chat" onclick="toggle_div_chat ('chatsection');">Chat</button>
+            <section style="display: none" class="chat_window" id="chatsection">
+                <div id="messages">
+
+                </div>
+                <input id="inpClient" type="text"/>
+            </section>
+        </div>
+    </section>
+</body>
+</html>

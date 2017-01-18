@@ -249,7 +249,7 @@ function initGame(){
     canvas.width = window.innerWidth - 200;//window.innerWidth - 200;
     canvas.height = window.innerHeight - 200;//window.innerHeight - 200;
 
-    socket = io.connect("http://localhost", {port: 3000, transports: ["websocket"]});
+    socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
 
     //keys = new KeysGame();
     //mouse = new MouseGame();
@@ -257,11 +257,11 @@ function initGame(){
     keys = keysGame;
     //mouse = new MouseGame();
 
-    var startX = Math.round(Math.random()*(canvas.width-30)),
-        startY = Math.round(Math.random()*(canvas.height-30));
+    var startX = Math.round(Math.random()*(canvas.width-200)),
+        startY = Math.round(Math.random()*(canvas.height-200));
 
-    //console.log("StartX: " + startX);
-    //console.log("StartY: " + startY);
+    console.log("StartX: " + startX);
+    console.log("StartY: " + startY);
 
     //localPlayer = new Player(startX, startY);
     localPlayer = player;
@@ -285,15 +285,45 @@ function initGame(){
 
         window.addEventListener("resize", onResize, false);
 
-        socket.on("connect", onSocketConnected);
+        //socket.emit("test", "hallo");
 
-        socket.on("disconnect", onSocketDisconnect);
+        //socket.on("connect", onSocketConnected);
 
-        socket.on("new player", onNewPlayer);
+        //socket.on("disconnect", onSocketDisconnect);
 
-        socket.on("move player", onMovePlayer);
+        /**socket.on("newplayer", function (data) {
+            console.log("ik kom hier....!");
+            console.log(data);
+            //console.log("New player connected: "+data.id);
+            console.log("New player X value: " + data.x);
+            console.log("New player Y value: " + data.y);
 
-        socket.on("remove player", onRemovePlayer);
+
+            //var newPlayer = new Player(data.x, data.y);
+            var newPlayer = player;
+            newPlayer.setX(data.x);
+            newPlayer.setY(data.y);
+            //newPlayer.id = data.id;
+
+            console.log(newPlayer);
+
+            remotePlayers.push(newPlayer);
+
+            console.log("Aantal spelers: " + remotePlayers.length);
+        });**/
+
+
+        socket.emit("newplayer", {x: localPlayer.getX(), y: localPlayer.getY()});
+
+        socket.on("newplayeradded", function (data) {
+
+        });
+
+        //socket.on("move player", onMovePlayer);
+
+        //socket.on("remove player", onRemovePlayer);
+
+        animate();
     }
 
     function playMuteAudio() {
@@ -329,13 +359,13 @@ function initGame(){
     function onSocketConnected() {
         console.log("Connected to socket server");
 
-        console.log("localPlayer: " + localPlayer);
+        //console.log("localPlayer: " + localPlayer);
 
-        console.log("localPlayer.X: " + localPlayer.getX());
-        console.log("localPlayer.Y: " + localPlayer.getY());
+        //console.log("localPlayer.X: " + localPlayer.getX());
+        //console.log("localPlayer.Y: " + localPlayer.getY());
 
         // Send local player data to the game server
-        socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY()});
+        socket.emit("newplayer", {x: localPlayer.getX(), y: localPlayer.getY()});
 
         animate();
     }

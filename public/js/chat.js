@@ -18,14 +18,11 @@ function initChat(){
         "use strict";
         console.log("sockets initialised for chat");
 
-//0. andere variabelen
         var inpClient = document.getElementById("inpClient");
         var messages = document.getElementById("messages");
 
-//1. socket initialiseren
         var socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
 
-//2. handlers
         inpClient.onkeydown = function (keyboardEvt) {
             if(keyboardEvt.keyCode === 13){
                 socket.emit("clientMsg", inpClient.value);

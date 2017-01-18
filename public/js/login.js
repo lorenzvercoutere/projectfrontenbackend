@@ -3,7 +3,7 @@
  */
 
 
-var User = require("../../data/models/user");
+/*var User = require("../../data/models/user");
 var mongoDB = require('mongodb');
 var mongoClient = mongoDB.MongoClient;
 
@@ -37,4 +37,19 @@ function login() {
     //var gebruikers = new Array();
 
     console.log("collectie: " + collection);
+}*/
+
+function login(){
+    "use strict";
+    var txtUsername = document.getElementById("loginUsername");
+    var username = txtUsername.value;
+
+    var socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
+
+    socket.emit("login", username);
+
+
+    initGame();
+
+    //console.log("ingevoerde username is: " + username);
 }

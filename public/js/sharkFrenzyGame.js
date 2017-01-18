@@ -233,7 +233,7 @@ var player = (function() {
 })();
 
 function initGame(){
-    console.log("init game...");
+    //console.log("init game...");
 
     score = 0;
     startTime = Math.round(new Date().getTime() / 1000);
@@ -249,8 +249,6 @@ function initGame(){
     canvas.width = window.innerWidth - 200;//window.innerWidth - 200;
     canvas.height = window.innerHeight - 200;//window.innerHeight - 200;
 
-    socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
-
     //keys = new KeysGame();
     //mouse = new MouseGame();
 
@@ -260,25 +258,75 @@ function initGame(){
     var startX = Math.round(Math.random()*(canvas.width-200)),
         startY = Math.round(Math.random()*(canvas.height-200));
 
-    console.log("StartX: " + startX);
-    console.log("StartY: " + startY);
+    remotePlayers = [];
 
-    //localPlayer = new Player(startX, startY);
+    socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
+
     localPlayer = player;
     localPlayer.setX(startX);
     localPlayer.setY(startY);
 
-    remotePlayers = [];
+    socket.on("onConnection", function () {
+        /*console.log("connected players: " + remotePlayers.length);
 
-    console.log("remotePlayers voor invoeren nieuwe gebruiker: " + remotePlayers.length);
+        //console.log(localPlayer);
 
-    score = Math.round(new Date().getTime() / 1000) - startTime;
 
-    setEventHandlers();
+
+
+        socket.emit("newplayer", {x: startX, y: startY});
+
+        socket.on("newplayeradded", function (data) {
+            //console.log("Newplayeradded value: " + data);
+
+            //console.log(localPlayer);
+
+            var newPlayer = player;
+            newPlayer.setX(data.x);
+            newPlayer.setY(data.y);
+            //newPlayer.id = data.id;
+
+            //console.log(newPlayer);
+
+            //console.log("local player x-value: " + localPlayer.getX() + ", y-value: " + localPlayer.getY());
+            //console.log("new player x-value: " + newPlayer.getX() + ", y-value: " + newPlayer.getY());
+
+            remotePlayers.push(newPlayer);
+
+            //console.log("remotePlayers na invoeren nieuwe gebruiker: " + remotePlayers.length);
+
+
+            console.log("remote players na adden newplayer: " + remotePlayers.length);
+            for(var i = 0; i < remotePlayers.length; i++){
+                var id = i +1;
+                console.log("Player: " + id + ", x-value: " + remotePlayers[i].getX() + ", y-value: " + remotePlayers[i].getY());
+            }
+
+        });*/
+
+
+        score = Math.round(new Date().getTime() / 1000) - startTime;
+
+        setEventHandlers();
+    });
+
+    //console.log("StartX: " + startX);
+    //console.log("StartY: " + startY);
+
+    //localPlayer = new Player(startX, startY);
+
+
+
+
+
+
+    //console.log("remotePlayers voor invoeren nieuwe gebruiker: " + remotePlayers.length);
+
+    //console.log("lokale player x-value: " + localPlayer.getX() + ", y-value: " + localPlayer.getY());
 
 
     function setEventHandlers(){
-        console.log("set handlers...");
+        //console.log("set handlers...");
 
         mute.addEventListener("click", playMuteAudio);
 
@@ -299,11 +347,13 @@ function initGame(){
 
             //console.log(newPlayer);
 
+            //console.log("local player x-value: " + localPlayer.getX() + ", y-value: " + localPlayer.getY());
+            //console.log("new player x-value: " + newPlayer.getX() + ", y-value: " + newPlayer.getY());
+
             remotePlayers.push(newPlayer);
 
-            console.log("remotePlayers na invoeren nieuwe gebruiker: " + remotePlayers.length);
+            //console.log("remotePlayers na invoeren nieuwe gebruiker: " + remotePlayers.length);
 
-            update();
             draw();
         });
     }
@@ -323,22 +373,22 @@ function initGame(){
 
     function onKeydown(e) {
         if (localPlayer) {
-            console.log("Keycode : " + e.keyCode);
+            //console.log("Keycode : " + e.keyCode);
             keys.onKeyDown(e);
             if(keys.left == true){
-                console.log("going left...");
+                //console.log("going left...");
                 localPlayer.setX(localPlayer.getX() - 3);
             }
             else if(keys.down == true){
-                console.log("going down...");
+                //console.log("going down...");
                 localPlayer.setY(localPlayer.getY() + 3);
             }
             else if(keys.up == true){
-                console.log("going up...");
+                //console.log("going up...");
                 localPlayer.setY(localPlayer.getY() - 3);
             }
             else if(keys.right == true){
-                console.log("going right...");
+                //console.log("going right...");
                 localPlayer.setX(localPlayer.getX() + 3);
             }
         }
@@ -414,7 +464,7 @@ function initGame(){
     }
 
     function animate() {
-        console.log("animate game...");
+        //console.log("animate game...");
         update();
         draw();
 
@@ -425,7 +475,7 @@ function initGame(){
     }
 
     function update() {
-        console.log("update game...");
+       //console.log("update game...");
         // Update local player and check for change
         if (localPlayer.updateKeys(keys)) {
             // Send local player data to the game server
@@ -444,7 +494,7 @@ function initGame(){
     }
 
     function draw() {
-        console.log("draw game...");
+        //console.log("draw game...");
 
         ctx.setTransform(1,0,0,1,0,0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -463,7 +513,7 @@ function initGame(){
         var i;
         //console.log("Aantal spelers: "+remotePlayers.length);
         for (i = 0; i < remotePlayers.length; i++) {
-            console.log("tekenen andere spelers");
+            //console.log("Teken speler: " + i + ", x-value: " + remotePlayers[i].getX() + ", y-value: " + remotePlayers[i].getY());
             remotePlayers[i].drawImage(ctx);
         }
     }
@@ -480,8 +530,8 @@ function initGame(){
                 localX + sharkWidth - 120 > remotes[i].getX() &&
                 localY < remotes[i].getY() + sharkHeight &&
                 localY + sharkHeight > remotes[i].getY()){
-                console.log("collision?");
-                console.log(playerById(remotes[i].id));
+                //console.log("collision?");
+                //console.log(playerById(remotes[i].id));
                 score = 0;
                 startTime = Math.round(new Date().getTime() / 1000);
                 bite_audio.play();

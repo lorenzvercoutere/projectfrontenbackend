@@ -32,11 +32,11 @@ function initChat(){
             }
         };
 
-        socket.on("login", function (data) {
+        /*socket.on("login", function (data) {
             console.log("inserting username...");
          var username = window.prompt("Kies een username", "Lorenz");
          socket.emit("login", username);
-         });
+         });*/
 
         socket.on("serverMsg", function (data) {
             var newMsg = document.createElement("div");

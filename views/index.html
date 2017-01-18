@@ -16,8 +16,49 @@
         <li><a href="/users/shop">Shop</a></li>
         <li><a href="/users/howto">How to</a></li>
     </ul>
-    <!--<a id="modal_trigger" href="#modal" class="btn">Login</a>-->
+    <a id="modal_trigger" href="#modal" class="btn">Login</a>
 </nav>
+
+<!-- inlog button and box-->
+<div id="modal" class="popup_container" style="display:none;">
+    <header class="popup_header">
+        <span class="header_title">Login</span>
+        <span class="modal_close"><i class="fa fa-times"></i></span>
+    </header>
+
+    <section class="popup_body">
+        <!-- Social Login-->
+        <div class="social_login">
+            <div class="">
+                <a href="#" class="social_box fb">
+                    <span class="icon"><i class="fa fa-facebook"></i></span>
+                    <span class="icon_title">Login with Facebook</span>
+
+                </a>
+            </div>
+
+            <div class="center_text">
+                <span>Or use your username</span>
+            </div>
+            <div class="action_btns">
+                <div class="btn_inlog"><a href="#" id="login_form" class="btn">Login</a></div>
+            </div>
+        </div>
+
+        <!-- Username Login-->
+        <div class="user_login">
+            <form>
+                <label>Username</label>
+                <input type="text" id="loginUsername"/>
+                <br>
+                <div class="action_btns">
+                    <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
+                    <div class="one_half last"><a href="#" class="btn btn_red">Login</a></div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
 
 <!--<audio id="background_audio" autoplay="autoplay" loop>
     <source src="/assets/sounds/sea.mp3" />-->

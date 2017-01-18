@@ -25,7 +25,7 @@ module.exports = function (io) {
             //console.log("New player X-value: " + data.x);
             //console.log("New player Y-value: " + data.y);
             socket.emit("newplayeradded", {x: data.x, y: data.y});
-            socket.broadcast.emit("newplayeradded", "hallo");
+            socket.broadcast.emit("newplayeradded", {x: data.x, y: data.y});
         });
 
         socket.on("moveplayer", function (data) {

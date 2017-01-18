@@ -270,6 +270,8 @@ function initGame(){
 
     remotePlayers = [];
 
+    console.log("remotePlayers voor invoeren nieuwe gebruiker: " + remotePlayers.length);
+
     score = Math.round(new Date().getTime() / 1000) - startTime;
 
     setEventHandlers();
@@ -299,10 +301,11 @@ function initGame(){
 
             remotePlayers.push(newPlayer);
 
-            console.log("Aantal spelers: " + remotePlayers.length);
-        });
+            console.log("remotePlayers na invoeren nieuwe gebruiker: " + remotePlayers.length);
 
-        animate();
+            update();
+            draw();
+        });
     }
 
     function playMuteAudio() {
@@ -460,6 +463,7 @@ function initGame(){
         var i;
         //console.log("Aantal spelers: "+remotePlayers.length);
         for (i = 0; i < remotePlayers.length; i++) {
+            console.log("tekenen andere spelers");
             remotePlayers[i].drawImage(ctx);
         }
     }

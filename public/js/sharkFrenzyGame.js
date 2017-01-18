@@ -235,6 +235,8 @@ var player = (function() {
 function initGame(){
     //console.log("init game...");
 
+
+
     score = 0;
     startTime = Math.round(new Date().getTime() / 1000);
     audio = document.getElementById('background_audio');
@@ -244,6 +246,7 @@ function initGame(){
 
 
     canvas = document.getElementById("gameCanvas");
+    canvas.style.display = "block";
     ctx = canvas.getContext("2d");
 
     canvas.width = window.innerWidth - 200;//window.innerWidth - 200;
@@ -266,64 +269,10 @@ function initGame(){
     localPlayer.setX(startX);
     localPlayer.setY(startY);
 
-    socket.on("onConnection", function () {
-        /*console.log("connected players: " + remotePlayers.length);
 
-        //console.log(localPlayer);
+    score = Math.round(new Date().getTime() / 1000) - startTime;
 
-
-
-
-        socket.emit("newplayer", {x: startX, y: startY});
-
-        socket.on("newplayeradded", function (data) {
-            //console.log("Newplayeradded value: " + data);
-
-            //console.log(localPlayer);
-
-            var newPlayer = player;
-            newPlayer.setX(data.x);
-            newPlayer.setY(data.y);
-            //newPlayer.id = data.id;
-
-            //console.log(newPlayer);
-
-            //console.log("local player x-value: " + localPlayer.getX() + ", y-value: " + localPlayer.getY());
-            //console.log("new player x-value: " + newPlayer.getX() + ", y-value: " + newPlayer.getY());
-
-            remotePlayers.push(newPlayer);
-
-            //console.log("remotePlayers na invoeren nieuwe gebruiker: " + remotePlayers.length);
-
-
-            console.log("remote players na adden newplayer: " + remotePlayers.length);
-            for(var i = 0; i < remotePlayers.length; i++){
-                var id = i +1;
-                console.log("Player: " + id + ", x-value: " + remotePlayers[i].getX() + ", y-value: " + remotePlayers[i].getY());
-            }
-
-        });*/
-
-
-        score = Math.round(new Date().getTime() / 1000) - startTime;
-
-        setEventHandlers();
-    });
-
-    //console.log("StartX: " + startX);
-    //console.log("StartY: " + startY);
-
-    //localPlayer = new Player(startX, startY);
-
-
-
-
-
-
-    //console.log("remotePlayers voor invoeren nieuwe gebruiker: " + remotePlayers.length);
-
-    //console.log("lokale player x-value: " + localPlayer.getX() + ", y-value: " + localPlayer.getY());
-
+    setEventHandlers();
 
     function setEventHandlers(){
         //console.log("set handlers...");

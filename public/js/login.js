@@ -44,12 +44,20 @@ function login(){
     var txtUsername = document.getElementById("loginUsername");
     var username = txtUsername.value;
 
-    var socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
+    if(username != ""){
+        var socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
 
-    socket.emit("login", username);
 
 
-    initGame();
+        socket.emit("login", username);
+
+
+
+        initGame();
+    }
+    else{
+        txtUsername.value = "Gelieve een username in te voeren";
+    }
 
     //console.log("ingevoerde username is: " + username);
 }

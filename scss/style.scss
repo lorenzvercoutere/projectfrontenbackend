@@ -244,16 +244,19 @@ h3 {
   font-size: 0.6em;
   text-transform: lowercase;
   font-weight: lighter;
-  width: 250px;
+  width: 260px;
   height: 500px;
   #inpClient {
-    float: right;
+    align-content: center;
     bottom: 0;
-  }
-  #messages {
-    height: 200px;
+    width: 200px;
   }
 }
+
+.chat_window > #messages{
+  height: 450px;
+}
+
 #HowTo_Content {
   background-color: $bg_blue;
   color: $dark_blue_grey;

@@ -6,6 +6,8 @@ module.exports = function (io) {
     io.sockets.on('connection', function (socket) {
         console.log("socket connected");
 
+        socket.username = "";
+
         socket.emit("onConnection");
 
         socket.emit("login");
@@ -40,8 +42,12 @@ module.exports = function (io) {
         });**/
 
         socket.on("clientMsg", function (data) {
-            console.log("Username is: " + socket.username);
-            data = socket.username + ": " + data;
+            if(socket.username == ""){
+                data = "Gelieve eerst in te loggen";
+            }
+            else {
+                data = socket.username + ": " + data;
+            }
             socket.emit("serverMsg", JSON.stringify({content: data}));
             socket.broadcast.emit("serverMsg", JSON.stringify({content: data}));
         });

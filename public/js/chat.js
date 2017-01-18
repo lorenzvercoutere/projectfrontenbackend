@@ -4,14 +4,17 @@
 
 function toggle_div_chat(id) {
         var divelement = document.getElementById(id);
+        var chatButton = document.getElementById("btn_chat");
+        chatButton.style.marginRight = "-10px";
         if(divelement.style.display == 'none'){
-            divelement.style.display = 'block';
-            divelement.style.transition ='0.4s';
-
+            divelement.style.display = 'inline-block';
+            //divelement.style.transition ='0.4s';
             initChat();
         }
-        else
-            divelement.style.display ='none';
+        else {
+            chatButton.style.marginRight = "0px";
+            divelement.style.display = 'none';
+        }
     }
 
 function initChat(){

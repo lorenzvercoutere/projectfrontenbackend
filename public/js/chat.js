@@ -36,6 +36,7 @@ function initChat(){
         };
 
         socket.on("login", function (data) {
+            console.log("inserting username...");
          var username = window.prompt("Kies een username", "Lorenz");
          socket.emit("login", username);
          });

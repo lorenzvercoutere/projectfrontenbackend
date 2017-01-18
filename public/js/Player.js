@@ -1,7 +1,7 @@
 /**************************************************
 ** GAME PLAYER CLASS
 **************************************************/
-var Player = function(startX, startY) {
+var player = (function(startX, startY) {
 	var x = startX,
 		y = startY,
 		id,
@@ -31,7 +31,7 @@ var Player = function(startX, startY) {
 	};
 
 	// Update player position
-	var update = function(keys) {
+	var updateKeys = function(keys) {
 
 
 		// Previous position
@@ -49,7 +49,7 @@ var Player = function(startX, startY) {
 			if(prevY < (worldHeight/2)-125)	y += moveAmount;
 			/*y += moveAmount;*/
 
-		};
+		}
 
 		// Left key takes priority over right
 		if (keys.left) {
@@ -60,7 +60,7 @@ var Player = function(startX, startY) {
 			if(prevX < (worldWidth/2 - 80)) x += moveAmount;
 			/*x += moveAmount;*/
 
-		};
+		}
 
 
 
@@ -83,7 +83,7 @@ var Player = function(startX, startY) {
 	var srcY = 0;
 	var lr;
 	// Draw player
-	var draw = function(ctx) {
+	var drawImage = function(ctx) {
 		//ctx.fillRect(x-5, y-5, 30, 30);
 		/* CODE FOR VIEWPORT*********
 		vX = x - Math.floor(0.5 * vWidth);
@@ -138,7 +138,8 @@ var Player = function(startX, startY) {
 		getY: getY,
 		setX: setX,
 		setY: setY,
-		update: update,
-		draw: draw
+		update: updateKeys,
+		draw: drawImage
 	}
-};
+})();
+

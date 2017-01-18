@@ -1,25 +1,22 @@
 /**
  * Created by lorenzvercoutere on 17/01/17.
  */
+
 var canvas,			// Canvas DOM element
     ctx,			// Canvas rendering context
     keys,			// Keyboard input
-    mouse,
     localPlayer,	// Local player
     remotePlayers,	// Remote players
-    score = 0,
-    startTime = Math.round(new Date().getTime() / 1000),
-    audio = document.getElementById('background_audio'),
-    bite_audio = document.getElementById('bite_audio'),
-    mute = document.getElementById('mute'),
-    soundicon = document.getElementById('soundicon'),
-    socket;			// Socket connection
+    score,
+    startTime,
+    audio,
+    bite_audio,
+    mute,
+    soundicon,
+    socket;// Socket connection
 
-var KeysGame = function (up, left, right, down) {
-    var up = up || false,
-        left = left || false,
-        right = right || false,
-        down = down || false;
+var keysGame = (function () {
+    var up = false, left = false, right = false, down = false;
 
     var onKeyDown = function(e) {
         var that = this,
@@ -92,27 +89,10 @@ var KeysGame = function (up, left, right, down) {
         onKeyDown: onKeyDown,
         onKeyUp: onKeyUp
     };
-};
-var MouseGame = function (mousePosX, mousePosY) {
-    var mousePosX,
-        mousePosY;
-    var mouseover = function (e) {
-        var that = this;
-        that.mousePosX = e.clientX;
-        that.mousePosY = e.clientY;
-    };
-
-    return{
-        mousePosX: mousePosX,
-        mousePosY: mousePosY
-    };
-};
-
-
-
-var Player = function(startX, startY) {
-    var x = startX,
-        y = startY,
+})();
+var player = (function() {
+    var x,
+        y,
         id,
         moveAmount = 2,
         worldHeight = 1440,
@@ -123,24 +103,24 @@ var Player = function(startX, startY) {
         vHeight = 720;
 
     // Getters and setters
-    var getX = function () {
+    var getX = function() {
         return x;
     };
 
-    var getY = function () {
+    var getY = function() {
         return y;
     };
 
-    var setX = function (newX) {
+    var setX = function(newX) {
         x = newX;
     };
 
-    var setY = function (newY) {
+    var setY = function(newY) {
         y = newY;
     };
 
     // Update player position
-    var update = function (keys) {
+    var updateKeys = function(keys) {
 
 
         // Previous position
@@ -148,29 +128,29 @@ var Player = function(startX, startY) {
             prevY = y;
 
 
+
         // Up key takes priority over down
         if (keys.up) {
-            if (prevY > -(worldHeight / 2) - 80) y -= moveAmount;
+            if(prevY > -(worldHeight/2)-80) y -= moveAmount;
             /*y -= moveAmount;*/
 
         } else if (keys.down) {
-            if (prevY < (worldHeight / 2) - 125)    y += moveAmount;
+            if(prevY < (worldHeight/2)-125)	y += moveAmount;
             /*y += moveAmount;*/
 
         }
-        ;
 
         // Left key takes priority over right
         if (keys.left) {
-            if (prevX > -(worldWidth / 2) - 25) x -= moveAmount;
+            if(prevX > -(worldWidth/2)-25) x -= moveAmount;
             /*x -= moveAmount;*/
 
         } else if (keys.right) {
-            if (prevX < (worldWidth / 2 - 80)) x += moveAmount;
+            if(prevX < (worldWidth/2 - 80)) x += moveAmount;
             /*x += moveAmount;*/
 
         }
-        ;
+
 
 
         return (prevX != x || prevY != y) ? true : false;
@@ -181,7 +161,7 @@ var Player = function(startX, startY) {
     var spriteHeight = 200;
     var cols = 31;
 
-    var width = spriteWidth / cols;
+    var width = spriteWidth/cols;
     var height = spriteHeight;
 
     var curFrame = 0;
@@ -192,7 +172,7 @@ var Player = function(startX, startY) {
     var srcY = 0;
     var lr;
     // Draw player
-    var draw = function (ctx) {
+    var drawImage = function(ctx) {
         //ctx.fillRect(x-5, y-5, 30, 30);
         /* CODE FOR VIEWPORT*********
          vX = x - Math.floor(0.5 * vWidth);
@@ -204,36 +184,38 @@ var Player = function(startX, startY) {
          if (vY < 0) vY = 0;
          if (vY+vHeight > worldHeight) vY = worldHeight - vHeight;
          */
-        if (keys.left) {
+        if(keys.left){
             lr = "l"
-        } else if (keys.right) {
+        }else if(keys.right){
             lr = "r";
         }
 
         var img = new Image;
         //console.log(lr);
-        if (lr == undefined) {
+        if(lr == undefined){
             //console.log('dafuq');
             img.src = 'http://i.imgur.com/BcMNf1R.png'; //shark: http://i.imgur.com/MKJpTNq.png
         }
-        if (lr == "l") {
+        if(lr == "l"){
             //console.log('l');
             img.src = 'http://i.imgur.com/BcMNf1R.png';
         }
-        if (lr == "r") {
+        if(lr == "r"){
             //console.log('r');
             img.src = 'http://i.imgur.com/zYvAAMe.png';
         }
 
 
+
         updateFrame();
 
-        ctx.drawImage(img, srcX, srcY, width, height, x, y, width, height);
+        ctx.drawImage(img,srcX,srcY,width,height,x,y, width,height);
+
 
 
     };
 
-    function updateFrame() {
+    function updateFrame(){
 
         curFrame = ++curFrame % frameCount;
         srcX = curFrame * width;
@@ -245,75 +227,74 @@ var Player = function(startX, startY) {
         getY: getY,
         setX: setX,
         setY: setY,
-        update: update,
-        draw: draw
+        updateKeys: updateKeys,
+        drawImage: drawImage
     }
-};
-
+})();
 
 function initGame(){
-    // Declare the canvas and rendering context
+    console.log("init game...");
+
+    score = 0;
+    startTime = Math.round(new Date().getTime() / 1000);
+    audio = document.getElementById('background_audio');
+    bite_audio = document.getElementById('bite_audio');
+    mute = document.getElementById('mute');
+    soundicon = document.getElementById('soundicon');
+
+
     canvas = document.getElementById("gameCanvas");
     ctx = canvas.getContext("2d");
 
-    // Maximise the canvas
-    canvas.width = 1280;//window.innerWidth - 200;
-    canvas.height = 720;//window.innerHeight - 200;
+    canvas.width = window.innerWidth - 200;//window.innerWidth - 200;
+    canvas.height = window.innerHeight - 200;//window.innerHeight - 200;
 
+    socket = io.connect("http://localhost", {port: 3000, transports: ["websocket"]});
 
-    // Initialise keyboard controls
-    keys = new KeysGame();
-    mouse = new MouseGame();
+    //keys = new KeysGame();
+    //mouse = new MouseGame();
 
-    // Calculate a random start position for the local player
-    // The minus 5 (half a player size) stops the player being
-    // placed right on the egde of the screen
+    keys = keysGame;
+    //mouse = new MouseGame();
+
     var startX = Math.round(Math.random()*(canvas.width-30)),
         startY = Math.round(Math.random()*(canvas.height-30));
 
-    // Initialise the local player
-    localPlayer = new Player(startX, startY);
+    //console.log("StartX: " + startX);
+    //console.log("StartY: " + startY);
 
+    //localPlayer = new Player(startX, startY);
+    localPlayer = player;
+    localPlayer.setX(startX);
+    localPlayer.setY(startY);
 
-    // Initialise socket connection
-    socket = io.connect("http://localhost", {port: 3000, transports: ["websocket"]});
-
-    // Initialise remote players array
     remotePlayers = [];
 
-    //timer test
     score = Math.round(new Date().getTime() / 1000) - startTime;
 
-    // Start listening for events
-    setEventHandlers;
+    setEventHandlers();
 
-    var setEventHandlers = function() {
+
+    function setEventHandlers(){
+        console.log("set handlers...");
 
         mute.addEventListener("click", playMuteAudio);
 
-        // Keyboard
         window.addEventListener("keydown", onKeydown, false);
         window.addEventListener("keyup", onKeyup, false);
 
-
-        // Window resize
         window.addEventListener("resize", onResize, false);
 
-        // Socket connection successful
         socket.on("connect", onSocketConnected);
 
-        // Socket disconnection
         socket.on("disconnect", onSocketDisconnect);
 
-        // New player message received
         socket.on("new player", onNewPlayer);
 
-        // Player move message received
         socket.on("move player", onMovePlayer);
 
-        // Player removed message received
         socket.on("remove player", onRemovePlayer);
-    };
+    }
 
     function playMuteAudio() {
         console.log("mute");
@@ -328,118 +309,106 @@ function initGame(){
         }
     }
 
-// Keyboard key down
     function onKeydown(e) {
         if (localPlayer) {
             keys.onKeyDown(e);
         }
     }
 
-// Keyboard key up
     function onKeyup(e) {
         if (localPlayer) {
             keys.onKeyUp(e);
-        };
-    };
+        }
+    }
 
-
-
-// Browser window resize
     function onResize(e) {
-        // Maximise the canvas
         canvas.width = 1280;
         canvas.height = 720;
-    };
+    }
 
-// Socket connected
     function onSocketConnected() {
         console.log("Connected to socket server");
+
+        console.log("localPlayer: " + localPlayer);
+
+        console.log("localPlayer.X: " + localPlayer.getX());
+        console.log("localPlayer.Y: " + localPlayer.getY());
 
         // Send local player data to the game server
         socket.emit("new player", {x: localPlayer.getX(), y: localPlayer.getY()});
 
-    };
+        animate();
+    }
 
-// Socket disconnected
     function onSocketDisconnect() {
         console.log("Disconnected from socket server");
-    };
+    }
 
-// New player
     function onNewPlayer(data) {
+        console.log("ik kom hier....!");
+
         console.log("New player connected: "+data.id);
 
-        // Initialise the new player
-        var newPlayer = new Player(data.x, data.y);
+        //var newPlayer = new Player(data.x, data.y);
+        var newPlayer = player;
+        newPlayer.setX(data.x);
+        newPlayer.setY(data.y);
         newPlayer.id = data.id;
 
-        // Add new player to the remote players array
+        console.log(newPlayer);
+
         remotePlayers.push(newPlayer);
 
-    };
+        console.log("Aantal spelers: " + remotePlayers.length);
 
-// Move player
+    }
+
     function onMovePlayer(data) {
         var movePlayer = playerById(data.id);
 
-        // Player not found
         if (!movePlayer) {
             console.log("Player not found: "+data.id);
             return;
-        };
+        }
 
-        // Update player position
         movePlayer.setX(data.x);
         movePlayer.setY(data.y);
-    };
+    }
 
-// Remove player
     function onRemovePlayer(data) {
         var removePlayer = playerById(data.id);
 
-        // Player not found
         if (!removePlayer) {
             console.log("Player not found: "+data.id);
             return;
-        };
+        }
 
-        // Remove player from array
         remotePlayers.splice(remotePlayers.indexOf(removePlayer), 1);
-    };
+    }
 
-
-    /**************************************************
-     ** GAME ANIMATION LOOP
-     **************************************************/
     function animate() {
+        console.log("animate game...");
         update();
         draw();
 
+
+
         // Request a new animation frame using Paul Irish's shim
-        window.requestAnimFrame(animate);
-    };
+        window.requestAnimFrame = animate;
+    }
 
-
-    /**************************************************
-     ** CAMERA
-     **************************************************/
-
-
-
-    /**************************************************
-     ** GAME UPDATE
-     **************************************************/
     function update() {
+        console.log("update game...");
         // Update local player and check for change
-        if (localPlayer.update(keys)) {
+        if (localPlayer.updateKeys(keys)) {
             // Send local player data to the game server
             socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
             //timer test
             score = Math.round(new Date().getTime() / 1000) - startTime;
             // call collision function on a movement
             checkCollision(localPlayer, remotePlayers);
-        };
-    };
+        }
+    }
 
     function clamp(value, min, max){
         if(value < min) return min;
@@ -447,15 +416,12 @@ function initGame(){
         return value;
     }
 
-    /**************************************************
-     ** GAME DRAW
-     **************************************************/
     function draw() {
-        // Wipe the canvas clean
+        console.log("draw game...");
+
         ctx.setTransform(1,0,0,1,0,0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        //Clamp the camera position to the world bounds while centering the camera around the player
         var camX = clamp(-localPlayer.getX() + canvas.width/2, 0, canvas.width*2 - canvas.width);
         var camY = clamp(-localPlayer.getY() + canvas.height/2, 0, canvas.height*2 - canvas.height);
 
@@ -464,21 +430,15 @@ function initGame(){
         ctx.font="16px Verdana";
         ctx.fillText("Score: " + score ,190,20);
         // Draw the local player
-        localPlayer.draw(ctx);
+        localPlayer.drawImage(ctx);
 
 
-        // Draw the remote players
         var i;
+        console.log("Aantal spelers: "+remotePlayers.length);
         for (i = 0; i < remotePlayers.length; i++) {
-            remotePlayers[i].draw(ctx);
-        };
-    };
-
-
-
-    /******************************************************
-     * CollisionDetection
-     ******************************************************/
+            remotePlayers[i].drawImage(ctx);
+        }
+    }
 
     function checkCollision(local, remotes){
         //console.log(local.getX() + " " + local.getY());
@@ -505,19 +465,13 @@ function initGame(){
         //console.log(remotes);
     }
 
-
-
-    /**************************************************
-     ** GAME HELPER FUNCTIONS
-     **************************************************/
-// Find player by ID
     function playerById(id) {
         var i;
         for (i = 0; i < remotePlayers.length; i++) {
             if (remotePlayers[i].id == id)
                 return remotePlayers[i];
-        };
+        }
 
         return false;
-    };
+    }
 }

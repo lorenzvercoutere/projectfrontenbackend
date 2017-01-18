@@ -16,5 +16,3 @@ var MouseGame = function (mousePosX, mousePosY) {
         mousePosY: mousePosY
     };
 };
-
-module.exports = MouseGame;

@@ -2,11 +2,8 @@
  * Created by lorenzvercoutere on 17/01/17.
  */
 
-var KeysGame = function (up, left, right, down) {
-    var up = up || false,
-        left = left || false,
-        right = right || false,
-        down = down || false;
+var keysGame = (function () {
+    var up = false, left = false, right = false, down = false;
 
     var onKeyDown = function(e) {
         var that = this,
@@ -79,6 +76,6 @@ var KeysGame = function (up, left, right, down) {
         onKeyDown: onKeyDown,
         onKeyUp: onKeyUp
     };
-};
+})();
 
-module.exports = KeysGame;
+module.exports = keysGame;

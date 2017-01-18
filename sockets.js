@@ -19,6 +19,12 @@ module.exports = function (io) {
             socket.broadcast.emit("serverMsg", JSON.stringify({content: "Nieuwe gebruiker " + username + " is online"}));
         });
 
+        socket.on("newplayer", function(data){
+            console.log("ik kom hier....!");
+
+            console.log("New player connected: " + data.id);
+        });
+
         socket.on("clientMsg", function (data) {
 
             socket.emit("serverMsg", JSON.stringify({content: data}));

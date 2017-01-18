@@ -285,43 +285,22 @@ function initGame(){
 
         window.addEventListener("resize", onResize, false);
 
-        //socket.emit("test", "hallo");
+        socket.emit("newplayer", {x: localPlayer.getX(), y: localPlayer.getY()});
 
-        //socket.on("connect", onSocketConnected);
+        socket.on("newplayeradded", function (data) {
+            //console.log("Newplayeradded value: " + data);
 
-        //socket.on("disconnect", onSocketDisconnect);
-
-        /**socket.on("newplayer", function (data) {
-            console.log("ik kom hier....!");
-            console.log(data);
-            //console.log("New player connected: "+data.id);
-            console.log("New player X value: " + data.x);
-            console.log("New player Y value: " + data.y);
-
-
-            //var newPlayer = new Player(data.x, data.y);
             var newPlayer = player;
             newPlayer.setX(data.x);
             newPlayer.setY(data.y);
             //newPlayer.id = data.id;
 
-            console.log(newPlayer);
+            //console.log(newPlayer);
 
             remotePlayers.push(newPlayer);
 
             console.log("Aantal spelers: " + remotePlayers.length);
-        });**/
-
-
-        socket.emit("newplayer", {x: localPlayer.getX(), y: localPlayer.getY()});
-
-        socket.on("newplayeradded", function (data) {
-
         });
-
-        //socket.on("move player", onMovePlayer);
-
-        //socket.on("remove player", onRemovePlayer);
 
         animate();
     }
@@ -341,10 +320,27 @@ function initGame(){
 
     function onKeydown(e) {
         if (localPlayer) {
+            console.log("Keycode : " + e.keyCode);
             keys.onKeyDown(e);
+            if(keys.left == true){
+                console.log("going left...");
+                localPlayer.setX(localPlayer.getX() - 3);
+            }
+            else if(keys.down == true){
+                console.log("going down...");
+                localPlayer.setY(localPlayer.getY() + 3);
+            }
+            else if(keys.up == true){
+                console.log("going up...");
+                localPlayer.setY(localPlayer.getY() - 3);
+            }
+            else if(keys.right == true){
+                console.log("going right...");
+                localPlayer.setX(localPlayer.getX() + 3);
+            }
         }
+        animate();
     }
-
     function onKeyup(e) {
         if (localPlayer) {
             keys.onKeyUp(e);
@@ -389,8 +385,6 @@ function initGame(){
 
         remotePlayers.push(newPlayer);
 
-        console.log("Aantal spelers: " + remotePlayers.length);
-
     }
 
     function onMovePlayer(data) {
@@ -432,7 +426,7 @@ function initGame(){
         // Update local player and check for change
         if (localPlayer.updateKeys(keys)) {
             // Send local player data to the game server
-            socket.emit("move player", {x: localPlayer.getX(), y: localPlayer.getY()});
+            socket.emit("moveplayer", {x: localPlayer.getX(), y: localPlayer.getY()});
             //timer test
             score = Math.round(new Date().getTime() / 1000) - startTime;
             // call collision function on a movement
@@ -464,7 +458,7 @@ function initGame(){
 
 
         var i;
-        console.log("Aantal spelers: "+remotePlayers.length);
+        //console.log("Aantal spelers: "+remotePlayers.length);
         for (i = 0; i < remotePlayers.length; i++) {
             remotePlayers[i].drawImage(ctx);
         }

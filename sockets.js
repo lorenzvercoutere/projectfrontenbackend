@@ -20,11 +20,16 @@ module.exports = function (io) {
         });
 
         socket.on("newplayer", function(data){
-            console.log("ik kom hier....!");
+            //console.log("ik kom hier....!");
 
-            console.log("New player X-value: " + data.x);
-            console.log("New player Y-value: " + data.y);
-            
+            //console.log("New player X-value: " + data.x);
+            //console.log("New player Y-value: " + data.y);
+            socket.emit("newplayeradded", {x: data.x, y: data.y});
+            socket.broadcast.emit("newplayeradded", "hallo");
+        });
+
+        socket.on("moveplayer", function (data) {
+           console.log("moving player...");
         });
 
         /**socket.on("test", function (text) {

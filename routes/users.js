@@ -4,7 +4,6 @@ var router = express.Router();
 var User = require('../data/models/user');
 var loadUser = require('./middleware/load_user'); //ophalen van één user
 
-
 router.get('/', function (req, res) {
     //zonder repository:
     //User.find({}).sort('username').exec(function (err, docs) {
@@ -16,8 +15,6 @@ router.get('/', function (req, res) {
         console.log("users: " + users);
         res.render('index');
     });*/
-
-
 
     res.render('index');
 
@@ -40,29 +37,29 @@ router.post('/login', function (req, res) {
     var username = JSON.stringify(req.body.username).slice(1, -1);
     console.log("this is the username: " + username);
 
-    User.find({'username': username}).exec(function (err, player) {
-        if(player.length > 0){
-            console.log("Username exists");
-            //code wanneer de speler inlogt
+    if(username == ""){
 
-        }else{
-            console.log("Making new user...");
-            //de user aanmaken
-            var user = {
-                username: username,
-                coins: 0,
-                activeShark: "grey"
-            };
+    }
+    else{
+        User.find({'username': username}).exec(function (err, player) {
+            if(player.length > 0){
+                console.log("Username exists");
+                //code wanneer de speler inlogt
 
-            var data = new User(user);
-            data.save();
+            }else{
+                console.log("Making new user...");
+                //de user aanmaken
+                var user = {
+                    username: username,
+                    coins: 0,
+                    activeShark: "grey"
+                };
 
-
-
-        }
-
-
-    });
+                var data = new User(user);
+                data.save();
+            }
+        });
+    }
 
 
 });

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>A multiplayer game built using HTML5 canvas and WebSockets</title>
+    <title>Sharkfrenzy</title>
     <link rel="stylesheet" href="/stylesheets/reset.css"/>
     <link rel="stylesheet" href="/stylesheets/main.min.css"/>
     <script src="/socket.io/socket.io.js"></script>
@@ -46,9 +46,8 @@
                 <span>Or use your username</span>
             </div>
             <div class="action_btns">
-                <div id="logi" class="btn_inlog"><a href="#" id="login_form" class="btn">Login</a></div>
+                <div class="btn_inlog"><a href="#" id="login_form" class="btn">Login</a></div>
             </div>
-
         </div>
 
         <!-- Username Login-->
@@ -59,7 +58,7 @@
                 <br>
                 <div class="action_btns">
                     <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                    <div class="one_half last"><a href="#" class="btn btn_red" onclick="login();"><button type="submit">Login</button></a></div>
+                    <div class="one_half last"><button type="submit" class="btn btn_red" onclick="login()">Login</button></div>
                 </div>
             </form>
         </div>
@@ -73,10 +72,10 @@
     <source src="/assets/sounds/bite.wav" />
 </audio>
 <div id="mute"><i id="soundicon" class="fa fa-volume-up"></i></div>
-<canvas id="gameCanvas"></canvas>
+<canvas id="gameCanvas" style="display: none"></canvas>
 <section id="chatsectie">
     <div class="div_chat">
-        <button class="btn_chat" onclick="toggle_div_chat ('chatsection');">Chat</button>
+        <button class="btn_chat" id="btn_chat" onclick="toggle_div_chat ('chatsection');">Chat</button>
         <section style="display: none" class="chat_window" id="chatsection">
             <div id="messages">
 

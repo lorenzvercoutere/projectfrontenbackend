@@ -71,6 +71,7 @@ router.post('/login', function (req, res) {
             }
             else{
                 console.log("gebruiker bestaat");
+                res.redirect("/");
             }
         });
     }

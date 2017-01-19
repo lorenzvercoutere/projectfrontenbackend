@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sharkfrenzy</title>
+    <title>A multiplayer game built using HTML5 canvas and WebSockets</title>
     <link rel="stylesheet" href="/stylesheets/reset.css"/>
     <link rel="stylesheet" href="/stylesheets/main.min.css"/>
     <script src="/socket.io/socket.io.js"></script>
@@ -21,6 +21,7 @@
         <li><a href="/users/howto">How to</a></li>
     </ul>
     <a id="modal_trigger" href="#modal" class="btn">Login</a>
+    <a href="/users/logout" id="logout" style="display: none;" class="btn">Logout</a>
 </nav>
 
 <!-- inlog button and box-->
@@ -45,19 +46,20 @@
                 <span>Or use your username</span>
             </div>
             <div class="action_btns">
-                <div class="btn_inlog"><a href="#" id="login_form" class="btn">Login</a></div>
+                <div id="logi" class="btn_inlog"><a href="#" id="login_form" class="btn">Login</a></div>
             </div>
+
         </div>
 
         <!-- Username Login-->
         <div class="user_login">
-            <form>
+            <form method="post" action="/users/login" >
                 <label>Username</label>
-                <input type="text" id="loginUsername"/>
+                <input type="text" id="loginUsername" name="username"/>
                 <br>
                 <div class="action_btns">
                     <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                    <div class="one_half last"><a href="#" class="btn btn_red" onclick="login();">Login</a></div>
+                    <div class="one_half last"><a href="#" class="btn btn_red" onclick="login();"><button type="submit">Login</button></a></div>
                 </div>
             </form>
         </div>
@@ -71,10 +73,10 @@
     <source src="/assets/sounds/bite.wav" />
 </audio>
 <div id="mute"><i id="soundicon" class="fa fa-volume-up"></i></div>
-<canvas id="gameCanvas" style="display: none"></canvas>
+<canvas id="gameCanvas"></canvas>
 <section id="chatsectie">
     <div class="div_chat">
-        <button class="btn_chat" id="btn_chat" onclick="toggle_div_chat ('chatsection');">Chat</button>
+        <button class="btn_chat" onclick="toggle_div_chat ('chatsection');">Chat</button>
         <section style="display: none" class="chat_window" id="chatsection">
             <div id="messages">
 

@@ -8,7 +8,7 @@
 var config = {
     HOST: 'http://localhost',
     PORT: getEnv('PORT') || 3000,
-    MONGODBURL : process.env.MONGO_URI || 'mongodb://localhost/sharkfrenzy',
+    MONGODBURL : process.env.MONGO_URI || 'mongodb://sharkfrenzy:team123@ds117199.mlab.com:17199/sharkfrenzy',
 };
 
 function getEnv(variable) {

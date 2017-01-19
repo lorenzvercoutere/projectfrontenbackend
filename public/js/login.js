@@ -39,25 +39,26 @@ function login() {
     console.log("collectie: " + collection);
 }*/
 
+
+
 function login(){
-    "use strict";
+    //"use strict";
     var txtUsername = document.getElementById("loginUsername");
     var username = txtUsername.value;
 
-    if(username != ""){
-        var socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
 
 
+    var socket = io.connect(location.protocol + "//" + location.hostname +  ":" + location.port);
 
-        socket.emit("login", username);
+    socket.emit("login", username);
+
+    document.getElementById("modal").style.display = 'none';
+    document.getElementById("lean_overlay").style.display = 'none';
+    document.getElementById("modal_trigger").style.display = 'none';
+    document.getElementById("logout").style.display = 'block';
 
 
-
-        initGame();
-    }
-    else{
-        txtUsername.value = "Gelieve een username in te voeren";
-    }
+    initGame();
 
     //console.log("ingevoerde username is: " + username);
 }

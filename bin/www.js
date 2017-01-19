@@ -14,7 +14,6 @@ app.set('port', process.env.PORT || 3000);
 var DBService = require('../data/connectDBService');
 var connectDB = DBService ('mongodb://sharkfrenzy:team123@ds117199.mlab.com:17199/sharkfrenzy', require('mongoose'));
 
-
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' +server.address().address + ":" + app.get('port'));
 });

@@ -41,6 +41,7 @@ function login() {
 
 function login(){
     "use strict";
+    console.log("Login in...");
     var txtUsername = document.getElementById("loginUsername");
     var username = txtUsername.value;
 

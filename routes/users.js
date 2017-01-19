@@ -42,7 +42,7 @@ router.post('/login', function (req, res) {
     }
     else{
         User.find({'username': username}).exec(function (err, player) {
-            if(player.length > 0){
+            /*if(player.length > 0){
                 console.log("Username exists");
                 //code wanneer de speler inlogt
 
@@ -57,6 +57,20 @@ router.post('/login', function (req, res) {
 
                 var data = new User(user);
                 data.save();
+            }*/
+            if(err){
+                //nieuwe user aanmaken;
+                var user = {
+                    username: username,
+                    coins: 0,
+                    activeShark: "grey"
+                };
+
+                var data = new User(user);
+                data.save();
+            }
+            else{
+                console.log("gebruiker bestaat");
             }
         });
     }

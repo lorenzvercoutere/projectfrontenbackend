@@ -12,7 +12,7 @@ var server = http.createServer(app);
 app.set('port', process.env.PORT || 3000);
 
 var DBService = require('../data/connectDBService');
-var connectDB = DBService (config.MONGODBURL, require('mongoose'));
+var connectDB = DBService ('mongodb://sharkfrenzy:team123@ds117199.mlab.com:17199/sharkfrenzy', require('mongoose'));
 
 
 server.listen(app.get('port'), function () {
